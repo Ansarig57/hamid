@@ -1,0 +1,1567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+<meta name="theme-color" content="#05050b">
+<title>Happy Birthday Hamid ❤️</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+
+html,body{
+width:100%;
+height:100%;
+overflow:hidden;
+font-family:Arial,sans-serif;
+background:#05050b;
+color:white;
+}
+
+body{
+background:
+radial-gradient(circle at 50% 20%,rgba(130,70,255,.25),transparent 35%),
+radial-gradient(circle at 20% 80%,rgba(255,70,160,.15),transparent 30%),
+#05050b;
+}
+
+button{font:inherit}
+
+#app{
+position:fixed;
+inset:0;
+overflow:hidden;
+}
+
+.bg{
+position:absolute;
+inset:0;
+overflow:hidden;
+pointer-events:none;
+}
+
+.orb{
+position:absolute;
+border-radius:50%;
+filter:blur(55px);
+opacity:.25;
+animation:drift 10s ease-in-out infinite alternate;
+}
+
+.o1{
+width:200px;
+height:200px;
+background:#7c3cff;
+left:-60px;
+top:10%;
+}
+
+.o2{
+width:240px;
+height:240px;
+background:#ff3f9c;
+right:-90px;
+bottom:5%;
+animation-delay:-4s;
+}
+
+@keyframes drift{
+to{
+transform:translate(30px,-25px) scale(1.15);
+}
+}
+
+#stars span{
+position:absolute;
+width:2px;
+height:2px;
+background:white;
+border-radius:50%;
+opacity:.5;
+animation:tw 2.5s infinite alternate;
+}
+
+@keyframes tw{
+to{
+opacity:1;
+transform:scale(1.8);
+}
+}
+
+/* PAGES */
+
+.screen{
+position:absolute;
+inset:0;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:20px;
+opacity:0;
+visibility:hidden;
+transform:translateX(100%);
+transition:
+transform .7s cubic-bezier(.77,0,.18,1),
+opacity .45s;
+}
+
+.screen.active{
+opacity:1;
+visibility:visible;
+transform:translateX(0);
+z-index:5;
+}
+
+.screen.prev{
+opacity:0;
+visibility:hidden;
+transform:translateX(-100%);
+z-index:2;
+}
+
+.inner{
+width:min(850px,100%);
+max-height:92vh;
+overflow:auto;
+text-align:center;
+scrollbar-width:none;
+}
+
+.inner::-webkit-scrollbar{
+display:none;
+}
+
+.glass{
+padding:32px 24px;
+border:1px solid rgba(255,255,255,.13);
+background:rgba(255,255,255,.055);
+backdrop-filter:blur(20px);
+-webkit-backdrop-filter:blur(20px);
+border-radius:30px;
+box-shadow:0 25px 90px rgba(0,0,0,.4);
+}
+
+.kicker{
+text-transform:uppercase;
+letter-spacing:4px;
+color:#c8b8ff;
+font-size:12px;
+margin-bottom:15px;
+}
+
+h1{
+font-size:clamp(50px,14vw,105px);
+line-height:.9;
+background:linear-gradient(
+100deg,
+#fff,
+#ff9bcf,
+#b7a1ff,
+#fff
+);
+background-size:300%;
+-webkit-background-clip:text;
+background-clip:text;
+color:transparent;
+animation:shine 5s linear infinite;
+}
+
+@keyframes shine{
+to{
+background-position:300%;
+}
+}
+
+h2{
+font-size:clamp(30px,8vw,55px);
+margin-bottom:15px;
+}
+
+p{
+color:#c8c8d2;
+line-height:1.75;
+}
+
+.date{
+margin:18px 0;
+font-size:18px;
+font-weight:bold;
+}
+
+.nextHint{
+margin-top:30px;
+font-size:13px;
+letter-spacing:1px;
+color:#aaa;
+animation:pulse 1.8s infinite;
+}
+
+@keyframes pulse{
+50%{opacity:.35}
+}
+
+/* PASSWORD */
+
+#lock{
+z-index:50;
+background:
+radial-gradient(circle at 50% 35%,rgba(112,67,255,.28),transparent 35%),
+#05050b;
+}
+
+.lockBox{
+width:min(390px,100%);
+text-align:center;
+padding:32px 22px;
+border:1px solid rgba(255,255,255,.13);
+background:rgba(255,255,255,.06);
+backdrop-filter:blur(22px);
+border-radius:30px;
+}
+
+.lockIcon{
+font-size:52px;
+margin-bottom:12px;
+}
+
+.pin{
+display:flex;
+justify-content:center;
+gap:12px;
+margin:24px 0;
+}
+
+.dot{
+width:13px;
+height:13px;
+border:1px solid #aaa;
+border-radius:50%;
+}
+
+.dot.on{
+background:white;
+box-shadow:0 0 16px white;
+}
+
+.pad{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px;
+}
+
+.pad button{
+height:55px;
+border:1px solid rgba(255,255,255,.1);
+border-radius:17px;
+background:rgba(255,255,255,.08);
+color:white;
+font-size:19px;
+}
+
+.pad button:active{
+transform:scale(.94);
+}
+
+.shake{
+animation:shake .35s;
+}
+
+@keyframes shake{
+25%{transform:translateX(-9px)}
+75%{transform:translateX(9px)}
+}
+
+/* CAKE */
+
+.dateBig{
+font-size:clamp(28px,7vw,52px);
+margin:15px 0;
+background:linear-gradient(90deg,#fff,#ff8bc8);
+-webkit-background-clip:text;
+color:transparent;
+}
+
+.cake{
+width:240px;
+height:230px;
+margin:15px auto 20px;
+position:relative;
+}
+
+.cakeBase{
+position:absolute;
+left:20px;
+bottom:25px;
+width:200px;
+height:85px;
+border-radius:0 0 25px 25px;
+background:linear-gradient(135deg,#ff4f9e,#6638c7);
+box-shadow:0 18px 35px rgba(0,0,0,.3);
+}
+
+.cakeTop{
+position:absolute;
+left:20px;
+bottom:82px;
+width:200px;
+height:70px;
+border-radius:50%;
+background:linear-gradient(135deg,#ff9ccc,#9b63ff);
+}
+
+.cream{
+position:absolute;
+left:20px;
+bottom:70px;
+width:200px;
+height:27px;
+border-radius:50%;
+background:white;
+opacity:.9;
+}
+
+.candle{
+position:absolute;
+left:114px;
+bottom:145px;
+width:12px;
+height:48px;
+border-radius:5px;
+background:linear-gradient(#fff,#ff74ae);
+}
+
+.flame{
+position:absolute;
+width:17px;
+height:25px;
+left:-2px;
+top:-24px;
+border-radius:50% 50% 50% 0;
+background:#ffb52e;
+transform:rotate(-45deg);
+box-shadow:0 0 22px #ff8b18;
+animation:flick .25s infinite alternate;
+}
+
+@keyframes flick{
+to{
+transform:rotate(-45deg) scale(1.12);
+}
+}
+
+.cakeName{
+position:absolute;
+left:0;
+right:0;
+bottom:103px;
+font-size:19px;
+font-weight:800;
+z-index:2;
+}
+
+/* LETTER */
+
+.letter{
+margin-top:25px;
+padding:30px 20px;
+border-radius:24px;
+background:linear-gradient(
+135deg,
+rgba(255,108,178,.12),
+rgba(120,83,255,.13)
+);
+border:1px solid rgba(255,255,255,.1);
+cursor:pointer;
+}
+
+.letterIcon{
+font-size:70px;
+margin-bottom:15px;
+}
+
+.letterText{
+display:none;
+margin-top:20px;
+text-align:left;
+color:#ddd;
+line-height:1.85;
+}
+
+.letter.open .letterText{
+display:block;
+animation:fade .6s;
+}
+
+@keyframes fade{
+from{
+opacity:0;
+transform:translateY(15px);
+}
+to{
+opacity:1;
+transform:none;
+}
+}
+
+/* GALLERY */
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:12px;
+margin-top:22px;
+}
+
+.gallery img{
+width:100%;
+aspect-ratio:1;
+object-fit:cover;
+border-radius:20px;
+border:1px solid rgba(255,255,255,.12);
+transition:.3s;
+cursor:pointer;
+}
+
+.gallery img:active{
+transform:scale(.96);
+}
+
+@media(max-width:600px){
+
+.gallery{
+grid-template-columns:1fr 1fr;
+}
+
+.gallery img:last-child{
+grid-column:span 2;
+aspect-ratio:2/1;
+}
+
+}
+
+/* WISHES */
+
+.wishes{
+display:grid;
+gap:12px;
+margin-top:22px;
+}
+
+.wish{
+padding:22px;
+border-radius:20px;
+background:rgba(255,255,255,.055);
+border:1px solid rgba(255,255,255,.1);
+font-size:17px;
+}
+
+/* MUSIC */
+
+.music{
+position:fixed;
+right:17px;
+bottom:17px;
+width:50px;
+height:50px;
+border-radius:50%;
+border:1px solid rgba(255,255,255,.15);
+background:rgba(15,15,25,.8);
+color:white;
+z-index:40;
+}
+
+/* PROGRESS */
+
+.progress{
+position:fixed;
+top:0;
+left:0;
+height:3px;
+background:linear-gradient(90deg,#ff55a8,#8d6cff);
+width:0%;
+z-index:60;
+transition:width .5s;
+}
+
+/* PHOTO MODAL */
+
+.modal{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.94);
+z-index:100;
+display:none;
+align-items:center;
+justify-content:center;
+padding:20px;
+}
+
+.modal.show{
+display:flex;
+}
+
+.modal img{
+max-width:95%;
+max-height:88%;
+border-radius:20px;
+}
+
+.close{
+position:absolute;
+top:15px;
+right:20px;
+font-size:40px;
+}
+
+/* EFFECTS */
+
+#fx{
+position:fixed;
+inset:0;
+pointer-events:none;
+z-index:90;
+}
+
+.conf{
+position:absolute;
+width:8px;
+height:12px;
+animation:fall 1.8s forwards;
+}
+
+@keyframes fall{
+to{
+transform:translate(var(--x),100vh) rotate(720deg);
+opacity:0;
+}
+}
+
+.finalGift{
+font-size:95px;
+margin:25px;
+animation:bounce 1.5s infinite;
+cursor:pointer;
+}
+
+@keyframes bounce{
+50%{
+transform:translateY(-14px) scale(1.05);
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="app">
+
+<div class="bg">
+<div class="orb o1"></div>
+<div class="orb o2"></div>
+<div id="stars"></div>
+</div>
+
+<div class="progress" id="progress"></div>
+
+<canvas id="fx"></canvas>
+
+
+<!-- PASSWORD -->
+
+<section class="screen active" id="lock">
+
+<div class="lockBox" id="lockBox">
+
+<div class="lockIcon">🔐</div>
+
+<div class="kicker">
+Private Birthday Experience
+</div>
+
+<h2>One Little Secret</h2>
+
+<p>
+Enter the 4-digit code to open Hamid's surprise.
+</p>
+
+<div class="pin">
+<i class="dot"></i>
+<i class="dot"></i>
+<i class="dot"></i>
+<i class="dot"></i>
+</div>
+
+<div class="pad">
+
+<button onclick="key('1')">1</button>
+<button onclick="key('2')">2</button>
+<button onclick="key('3')">3</button>
+
+<button onclick="key('4')">4</button>
+<button onclick="key('5')">5</button>
+<button onclick="key('6')">6</button>
+
+<button onclick="key('7')">7</button>
+<button onclick="key('8')">8</button>
+<button onclick="key('9')">9</button>
+
+<button onclick="back()">⌫</button>
+<button onclick="key('0')">0</button>
+<button onclick="check()">✓</button>
+
+</div>
+
+<p style="margin-top:15px;font-size:12px;color:#777">
+Hint: today's date is part of the magic.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- PAGE 1 -->
+
+<section class="screen" data-page="0">
+
+<div class="inner">
+
+<div class="glass">
+
+<div class="kicker">
+A Tiny Universe Made For
+</div>
+
+<h1>Hamid</h1>
+
+<div class="dateBig">
+19 September 2026
+</div>
+
+<p>
+Today belongs to you.<br>
+So let's make this little journey special.
+</p>
+
+<div class="nextHint">
+TAP ANYWHERE TO CONTINUE ✦
+</div>
+
+</div>
+
+</div>
+
+<div class="tapZone" onclick="next()"></div>
+
+</section>
+
+
+<!-- PAGE 2 -->
+
+<section class="screen" data-page="1">
+
+<div class="inner">
+
+<div class="glass">
+
+<div class="kicker">
+Chapter 01
+</div>
+
+<h2>
+Make a Wish 🎂
+</h2>
+
+<p>
+Close your eyes for a second.<br>
+Think of something you really want.
+</p>
+
+<div class="cake">
+
+<div class="candle">
+<div class="flame" id="flame"></div>
+</div>
+
+<div class="cakeTop"></div>
+
+<div class="cream"></div>
+
+<div class="cakeBase"></div>
+
+<div class="cakeName">
+HAMID
+</div>
+
+</div>
+
+<p id="cakeMsg">
+Tap anywhere when you're ready.
+</p>
+
+</div>
+
+</div>
+
+<div class="tapZone" onclick="cakeAction()"></div>
+
+</section>
+
+
+<!-- PAGE 3 -->
+
+<section class="screen" data-page="2">
+
+<div class="inner">
+
+<div class="glass">
+
+<div class="kicker">
+Chapter 02
+</div>
+
+<h2>
+A Letter For You 💌
+</h2>
+
+<div class="letter"
+id="letter"
+onclick="event.stopPropagation();openLetter()">
+
+<div class="letterIcon">
+💌
+</div>
+
+<strong>
+Tap the envelope
+</strong>
+
+<div class="letterText">
+
+<p>
+Happy Birthday, Hamid ❤️
+</p>
+
+<br>
+
+<p>
+May this new year of your life bring you peace,
+happiness, success and countless moments worth remembering.
+</p>
+
+<br>
+
+<p>
+May the things you quietly wish for find their way to you,
+and may you always have people around you who genuinely care.
+</p>
+
+<br>
+
+<p>
+Keep smiling, keep growing, and keep being yourself.
+</p>
+
+<br>
+
+<p>
+<strong>
+Happy Birthday once again. 🎂✨
+</strong>
+</p>
+
+</div>
+
+</div>
+
+<div class="nextHint">
+TAP OUTSIDE THE LETTER TO CONTINUE
+</div>
+
+</div>
+
+</div>
+
+<div class="tapZone" onclick="next()"></div>
+
+</section>
+
+
+<!-- PAGE 4 -->
+
+<section class="screen" data-page="3">
+
+<div class="inner">
+
+<div class="glass">
+
+<div class="kicker">
+Chapter 03
+</div>
+
+<h2>
+Three Little Memories 📸
+</h2>
+
+<p>
+Some moments deserve to stay forever.
+</p>
+
+<div class="gallery">
+
+<img src="PNG 1.png"
+onclick="photo(this.src,event)">
+
+<img src="PNG 2.png"
+onclick="photo(this.src,event)">
+
+<img src="PNG 3.png"
+onclick="photo(this.src,event)">
+
+</div>
+
+<div class="nextHint">
+TAP ANYWHERE TO CONTINUE
+</div>
+
+</div>
+
+</div>
+
+<div class="tapZone" onclick="next()"></div>
+
+</section>
+
+
+<!-- PAGE 5 -->
+
+<section class="screen" data-page="4">
+
+<div class="inner">
+
+<div class="glass">
+
+<div class="kicker">
+Chapter 04
+</div>
+
+<h2>
+My Wishes For You ✨
+</h2>
+
+<div class="wishes">
+
+<div class="wish">
+🌙 May your difficult days become lighter.
+</div>
+
+<div class="wish">
+🌟 May your dreams become real, one by one.
+</div>
+
+<div class="wish">
+❤️ May you always have genuine people around you.
+</div>
+
+<div class="wish">
+🚀 May this year take you closer to everything you want.
+</div>
+
+</div>
+
+<div class="nextHint">
+TAP ANYWHERE TO CONTINUE
+</div>
+
+</div>
+
+</div>
+
+<div class="tapZone" onclick="next()"></div>
+
+</section>
+
+
+<!-- PAGE 6 -->
+
+<section class="screen" data-page="5">
+
+<div class="inner">
+
+<div class="glass">
+
+<div class="kicker">
+Final Chapter
+</div>
+
+<h2>
+One Last Surprise 🎁
+</h2>
+
+<p>
+The last page is waiting.
+</p>
+
+<div class="finalGift"
+onclick="finale(event)">
+🎁
+</div>
+
+<p id="finalText">
+Tap the gift.
+</p>
+
+<div class="nextHint">
+TAP THE GIFT
+</div>
+
+</div>
+
+</div>
+
+<div class="tapZone" onclick="next()"></div>
+
+</section>
+
+
+<!-- FINAL PAGE -->
+
+<section class="screen" data-page="6">
+
+<div class="inner">
+
+<div class="glass">
+
+<div class="kicker">
+19 • 09 • 2026
+</div>
+
+<h1 style="font-size:clamp(42px,11vw,88px)">
+Happy<br>
+Birthday<br>
+Hamid ❤️
+</h1>
+
+<p style="margin-top:25px">
+May your next chapter be brighter,
+happier and unforgettable.
+</p>
+
+<div style="font-size:48px;margin-top:25px">
+🎂 🎉 ✨
+</div>
+
+</div>
+
+</div>
+
+<div class="tapZone" onclick="restart()"></div>
+
+</section>
+
+
+<!-- MUSIC BUTTON -->
+
+<button class="music"
+id="musicBtn"
+onclick="toggleMusic()">
+🎵
+</button>
+
+
+<!-- PHOTO VIEWER -->
+
+<div class="modal"
+id="modal"
+onclick="closePhoto()">
+
+<div class="close">
+×
+</div>
+
+<img id="modalImg">
+
+</div>
+
+
+<audio id="music" loop>
+<source src="birthday.mp3" type="audio/mpeg">
+</audio>
+
+</div>
+
+
+<script>
+
+const PASSWORD="1909";
+
+let input="";
+let page=-1;
+let cakeDone=false;
+let letterOpen=false;
+
+const screens=[
+...document.querySelectorAll(".screen[data-page]")
+];
+
+const dots=[
+...document.querySelectorAll(".dot")
+];
+
+const progress=
+document.getElementById("progress");
+
+const music=
+document.getElementById("music");
+
+
+/* STARS */
+
+for(let i=0;i<110;i++){
+
+const s=document.createElement("span");
+
+s.style.left=
+Math.random()*100+"%";
+
+s.style.top=
+Math.random()*100+"%";
+
+s.style.animationDelay=
+Math.random()*3+"s";
+
+document
+.getElementById("stars")
+.appendChild(s);
+
+}
+
+
+/* PASSWORD */
+
+function updateDots(){
+
+dots.forEach(
+(d,i)=>
+d.classList.toggle(
+"on",
+i<input.length
+)
+);
+
+}
+
+function key(n){
+
+if(input.length<4){
+
+input+=n;
+
+updateDots();
+
+if(input.length===4){
+
+setTimeout(check,160);
+
+}
+
+}
+
+}
+
+function back(){
+
+input=input.slice(0,-1);
+
+updateDots();
+
+}
+
+function check(){
+
+if(input===PASSWORD){
+
+document
+.getElementById("lock")
+.classList.remove("active");
+
+setTimeout(()=>{
+
+page=0;
+
+showPage();
+
+autoMusic();
+
+},350);
+
+}
+
+else{
+
+const b=
+document.getElementById("lockBox");
+
+b.classList.add("shake");
+
+setTimeout(
+()=>b.classList.remove("shake"),
+400
+);
+
+input="";
+
+updateDots();
+
+}
+
+}
+
+
+/* PAGE CONTROL */
+
+function showPage(){
+
+screens.forEach(
+(s,i)=>{
+
+s.classList.remove(
+"active",
+"prev"
+);
+
+if(i<page)
+s.classList.add("prev");
+
+if(i===page)
+s.classList.add("active");
+
+}
+);
+
+progress.style.width=
+((page+1)/screens.length*100)+"%";
+
+}
+
+function next(){
+
+if(page<screens.length-1){
+
+page++;
+
+showPage();
+
+}
+
+else{
+
+restart();
+
+}
+
+}
+
+function prev(){
+
+if(page>0){
+
+page--;
+
+showPage();
+
+}
+
+}
+
+
+/* CAKE */
+
+function cakeAction(){
+
+if(!cakeDone){
+
+document
+.getElementById("flame")
+.style.display="none";
+
+document
+.getElementById("cakeMsg")
+.textContent=
+"Wish made. ✨ Now tap again to continue.";
+
+cakeDone=true;
+
+confetti();
+
+}
+
+else{
+
+next();
+
+}
+
+}
+
+
+/* LETTER */
+
+function openLetter(){
+
+if(!letterOpen){
+
+document
+.getElementById("letter")
+.classList.add("open");
+
+letterOpen=true;
+
+}
+
+}
+
+
+/* PHOTOS */
+
+function photo(src,e){
+
+e.stopPropagation();
+
+document
+.getElementById("modalImg")
+.src=src;
+
+document
+.getElementById("modal")
+.classList.add("show");
+
+}
+
+function closePhoto(){
+
+document
+.getElementById("modal")
+.classList.remove("show");
+
+}
+
+
+/* FINAL */
+
+function finale(e){
+
+e.stopPropagation();
+
+document
+.getElementById("finalText")
+.innerHTML=
+"🎉 Happy Birthday Hamid! ❤️<br>19 September 2026 — a day worth celebrating.";
+
+confetti();
+
+fireworks();
+
+}
+
+
+/* RESTART */
+
+function restart(){
+
+page=0;
+
+showPage();
+
+}
+
+
+/* MUSIC */
+
+function autoMusic(){
+
+music.volume=.38;
+
+music.play()
+.then(
+()=>{
+document
+.getElementById("musicBtn")
+.textContent="🔊";
+}
+)
+.catch(
+()=>{}
+);
+
+}
+
+function toggleMusic(){
+
+if(music.paused){
+
+music.play();
+
+document
+.getElementById("musicBtn")
+.textContent="🔊";
+
+}
+
+else{
+
+music.pause();
+
+document
+.getElementById("musicBtn")
+.textContent="🎵";
+
+}
+
+}
+
+
+/* KEYBOARD */
+
+document.addEventListener(
+"keydown",
+e=>{
+
+if(
+document
+.getElementById("lock")
+.classList.contains("active")
+){
+
+if(/^\d$/.test(e.key))
+key(e.key);
+
+if(e.key==="Backspace")
+back();
+
+if(e.key==="Enter")
+check();
+
+}
+
+else{
+
+if(
+e.key==="ArrowRight"||
+e.key==="Enter"||
+e.key===" "
+)
+next();
+
+if(e.key==="ArrowLeft")
+prev();
+
+}
+
+}
+);
+
+
+/* SWIPE */
+
+let touchX=0;
+
+document.addEventListener(
+"touchstart",
+e=>{
+touchX=
+e.changedTouches[0].screenX;
+},
+{passive:true}
+);
+
+document.addEventListener(
+"touchend",
+e=>{
+
+if(
+document
+.getElementById("lock")
+.classList.contains("active")
+)
+return;
+
+const dx=
+e.changedTouches[0].screenX-touchX;
+
+if(Math.abs(dx)>70){
+
+if(dx<0)
+next();
+else
+prev();
+
+}
+
+},
+{passive:true}
+);
+
+
+/* CONFETTI */
+
+function confetti(){
+
+for(let i=0;i<85;i++){
+
+const c=
+document.createElement("i");
+
+c.className="conf";
+
+c.style.left="50%";
+c.style.top="35%";
+
+c.style.background=
+`hsl(${Math.random()*360},90%,65%)`;
+
+c.style.setProperty(
+"--x",
+(Math.random()*900-450)+"px"
+);
+
+c.style.animationDelay=
+Math.random()*.35+"s";
+
+document
+.getElementById("app")
+.appendChild(c);
+
+setTimeout(
+()=>c.remove(),
+2200
+);
+
+}
+
+}
+
+
+/* FIREWORKS */
+
+const canvas=
+document.getElementById("fx");
+
+const ctx=
+canvas.getContext("2d");
+
+function resize(){
+
+canvas.width=
+innerWidth*devicePixelRatio;
+
+canvas.height=
+innerHeight*devicePixelRatio;
+
+ctx.setTransform(
+devicePixelRatio,
+0,
+0,
+devicePixelRatio,
+0,
+0
+);
+
+}
+
+resize();
+
+addEventListener(
+"resize",
+resize
+);
+
+let particles=[];
+
+function fireworks(){
+
+for(let k=0;k<4;k++){
+
+setTimeout(()=>{
+
+const x=
+innerWidth*(.2+Math.random()*.6);
+
+const y=
+innerHeight*(.18+Math.random()*.35);
+
+for(let i=0;i<55;i++){
+
+const a=
+Math.random()*Math.PI*2;
+
+const s=
+2+Math.random()*4;
+
+particles.push({
+
+x:x,
+y:y,
+
+vx:Math.cos(a)*s,
+vy:Math.sin(a)*s,
+
+life:70,
+h:Math.random()*360
+
+});
+
+}
+
+},k*400);
+
+}
+
+}
+
+function animate(){
+
+ctx.clearRect(
+0,
+0,
+innerWidth,
+innerHeight
+);
+
+particles=
+particles.filter(
+p=>p.life>0
+);
+
+particles.forEach(p=>{
+
+p.x+=p.vx;
+p.y+=p.vy;
+
+p.vy+=.045;
+
+p.life--;
+
+ctx.fillStyle=
+`hsla(${p.h},90%,65%,${p.life/70})`;
+
+ctx.fillRect(
+p.x,
+p.y,
+3,
+3
+);
+
+});
+
+requestAnimationFrame(animate);
+
+}
+
+animate();
+
+</script>
+
+</body>
+</html>
