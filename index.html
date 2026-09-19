@@ -2,14 +2,15 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no,viewport-fit=cover">
-<meta name="theme-color" content="#05040a">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<meta name="theme-color" content="#05030b">
 <title>Happy Birthday Hamid ❤️</title>
 
 <style>
 /* =========================================================
-   HAMID BIRTHDAY — MIDNIGHT LUXURY EDITION
-   FILES MUST BE IN SAME FOLDER:
+   HAMID — VIP BIRTHDAY EXPERIENCE
+   ONE HTML FILE
+   Assets:
    PNG 1.png
    PNG 2.png
    PNG 3.png
@@ -23,10 +24,15 @@
   -webkit-tap-highlight-color:transparent;
 }
 
-html,body{
-  width:100%;
-  height:100%;
-  overflow:hidden;
+html{
+  scroll-behavior:smooth;
+  background:#05030b;
+}
+
+body{
+  margin:0;
+  background:#05030b;
+  color:#fff;
   font-family:
     Inter,
     -apple-system,
@@ -34,87 +40,75 @@ html,body{
     "Segoe UI",
     Arial,
     sans-serif;
-  background:#05040a;
-  color:#fff;
-}
-
-body{
-  background:
-    radial-gradient(circle at 50% 15%,rgba(130,82,255,.16),transparent 32%),
-    radial-gradient(circle at 10% 90%,rgba(255,70,170,.10),transparent 28%),
-    #05040a;
-}
-
-button{
-  font:inherit;
-  color:inherit;
-}
-
-button,
-.letter,
-.finalGift,
-.gallery img{
-  user-select:none;
-  -webkit-user-select:none;
-}
-
-#app{
-  position:fixed;
-  inset:0;
-  overflow:hidden;
+  overflow-x:hidden;
 }
 
 /* =========================================================
    BACKGROUND
 ========================================================= */
 
-.bg{
-  position:absolute;
+body::before{
+  content:"";
+  position:fixed;
   inset:0;
-  overflow:hidden;
+  z-index:-5;
+  background:
+    radial-gradient(circle at 50% 8%,rgba(126,73,255,.20),transparent 30%),
+    radial-gradient(circle at 5% 75%,rgba(255,62,170,.11),transparent 28%),
+    radial-gradient(circle at 95% 55%,rgba(80,100,255,.10),transparent 28%),
+    #05030b;
+}
+
+.bgGlow{
+  position:fixed;
+  inset:0;
   pointer-events:none;
+  z-index:-3;
+  overflow:hidden;
 }
 
-.noise{
-  position:absolute;
-  inset:0;
-  opacity:.035;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
-}
-
-.orb{
+.glow{
   position:absolute;
   border-radius:50%;
-  filter:blur(70px);
-  opacity:.18;
+  filter:blur(80px);
+  opacity:.14;
 }
 
-.o1{
-  width:240px;
-  height:240px;
+.glow1{
+  width:250px;
+  height:250px;
   background:#713dff;
-  left:-100px;
-  top:8%;
+  top:5%;
+  left:-120px;
 }
 
-.o2{
-  width:260px;
-  height:260px;
-  background:#ed3c9c;
-  right:-120px;
-  bottom:5%;
+.glow2{
+  width:280px;
+  height:280px;
+  background:#ef3c9c;
+  bottom:8%;
+  right:-140px;
 }
 
-.o3{
-  width:160px;
-  height:160px;
-  background:#a884ff;
-  left:45%;
-  bottom:-100px;
-  opacity:.08;
+.glow3{
+  width:180px;
+  height:180px;
+  background:#a96dff;
+  top:48%;
+  left:40%;
+  opacity:.07;
 }
 
-#stars span{
+/* stars */
+
+.stars{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-2;
+}
+
+.star{
   position:absolute;
   width:2px;
   height:2px;
@@ -124,338 +118,147 @@ button,
 }
 
 /* =========================================================
-   TOP PROGRESS
+   TOP BAR
 ========================================================= */
 
-.progressWrap{
+.topBar{
   position:fixed;
   top:0;
   left:0;
   right:0;
+  z-index:100;
+
   height:5px;
-  z-index:80;
-  padding:0 16px;
+  padding:2px 15px;
 }
 
 .progressTrack{
-  width:100%;
   height:2px;
-  margin-top:2px;
-  background:rgba(255,255,255,.08);
+  width:100%;
   border-radius:20px;
+  background:rgba(255,255,255,.08);
   overflow:hidden;
 }
 
 .progress{
-  height:100%;
   width:0%;
-  background:linear-gradient(90deg,#dca7ff,#ff87c9,#f5d78e);
-  box-shadow:0 0 14px rgba(225,160,255,.5);
-  transition:width .55s cubic-bezier(.22,1,.36,1);
-}
-
-/* =========================================================
-   SCREENS
-========================================================= */
-
-.screen{
-  position:absolute;
-  inset:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:
-    max(22px,env(safe-area-inset-top))
-    20px
-    max(85px,env(safe-area-inset-bottom))
-    20px;
-
-  opacity:0;
-  visibility:hidden;
-  transform:translate3d(100%,0,0) scale(.97);
-
-  transition:
-    transform .65s cubic-bezier(.77,0,.18,1),
-    opacity .4s ease,
-    visibility 0s linear .65s;
-}
-
-.screen.active{
-  opacity:1;
-  visibility:visible;
-  transform:translate3d(0,0,0) scale(1);
-  z-index:5;
-  transition-delay:0s;
-}
-
-.screen.prev{
-  opacity:0;
-  visibility:hidden;
-  transform:translate3d(-100%,0,0) scale(.97);
-  z-index:2;
-}
-
-.inner{
-  width:min(850px,100%);
-  max-height:88vh;
-  overflow:auto;
-  scrollbar-width:none;
-  text-align:center;
-}
-
-.inner::-webkit-scrollbar{
-  display:none;
-}
-
-/* =========================================================
-   PREMIUM CARD
-========================================================= */
-
-.glass{
-  position:relative;
-  overflow:hidden;
-  padding:38px 25px;
-  border-radius:32px;
-
+  height:100%;
   background:
     linear-gradient(
-      145deg,
-      rgba(255,255,255,.075),
-      rgba(255,255,255,.025)
+      90deg,
+      #cba1ff,
+      #ff83c5,
+      #f3d28b
     );
-
-  border:1px solid rgba(255,255,255,.13);
-
-  box-shadow:
-    0 30px 90px rgba(0,0,0,.48),
-    inset 0 1px 0 rgba(255,255,255,.08);
-}
-
-.glass::before{
-  content:"";
-  position:absolute;
-  left:12%;
-  right:12%;
-  top:0;
-  height:1px;
-  background:linear-gradient(
-    90deg,
-    transparent,
-    rgba(255,255,255,.35),
-    transparent
-  );
-}
-
-.glass::after{
-  content:"";
-  position:absolute;
-  width:150px;
-  height:150px;
-  top:-100px;
-  right:-70px;
-  border-radius:50%;
-  background:rgba(190,140,255,.09);
-  filter:blur(30px);
+  box-shadow:0 0 15px rgba(225,160,255,.6);
 }
 
 /* =========================================================
-   TYPOGRAPHY
+   MUSIC
 ========================================================= */
 
-.kicker{
-  margin-bottom:16px;
-  text-transform:uppercase;
-  letter-spacing:4px;
-  font-size:10px;
-  color:#c8b8df;
-}
-
-h1{
-  font-size:clamp(54px,15vw,112px);
-  line-height:.88;
-  letter-spacing:-4px;
-
-  background:
-    linear-gradient(
-      105deg,
-      #fff 10%,
-      #ffd6ec 35%,
-      #c6b1ff 60%,
-      #fff 85%
-    );
-
-  -webkit-background-clip:text;
-  background-clip:text;
-  color:transparent;
-}
-
-h2{
-  font-size:clamp(31px,8vw,57px);
-  line-height:1;
-  letter-spacing:-1.5px;
-  margin-bottom:15px;
-}
-
-p{
-  color:#bdb9c7;
-  line-height:1.75;
-}
-
-.dateBig{
-  margin:22px 0 16px;
-  font-size:clamp(23px,6vw,46px);
-  font-weight:700;
-  letter-spacing:-1px;
-
-  background:linear-gradient(
-    90deg,
-    #fff,
-    #e7c6ff,
-    #f7bfdc
-  );
-
-  -webkit-background-clip:text;
-  background-clip:text;
-  color:transparent;
-}
-
-.goldLine{
-  width:70px;
-  height:1px;
-  margin:24px auto;
-  background:linear-gradient(
-    90deg,
-    transparent,
-    #e8c47d,
-    transparent
-  );
-}
-
-/* =========================================================
-   BOTTOM NAVIGATION
-========================================================= */
-
-.bottomNav{
+.musicBtn{
   position:fixed;
-  left:50%;
-  bottom:max(16px,env(safe-area-inset-bottom));
-  transform:translateX(-50%);
-  width:min(390px,calc(100% - 34px));
-  height:58px;
+  top:max(17px,env(safe-area-inset-top));
+  right:16px;
+  z-index:110;
 
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
+  width:46px;
+  height:46px;
 
-  padding:7px;
+  border-radius:50%;
 
-  background:rgba(12,10,19,.84);
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:22px;
+  border:1px solid rgba(255,255,255,.15);
 
-  backdrop-filter:blur(20px);
-  -webkit-backdrop-filter:blur(20px);
+  background:rgba(12,9,20,.76);
 
-  box-shadow:0 15px 45px rgba(0,0,0,.45);
-  z-index:70;
-}
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
 
-.navInfo{
-  padding-left:12px;
-  font-size:10px;
-  letter-spacing:2px;
-  color:#898492;
-  white-space:nowrap;
-}
-
-.nextBtn{
-  border:1px solid rgba(255,255,255,.16);
-  border-radius:16px;
-
-  min-width:112px;
-  height:44px;
-
-  padding:0 17px;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255,255,255,.13),
-      rgba(255,255,255,.055)
-    );
+  color:#fff;
+  font-size:18px;
 
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.1),
-    0 7px 20px rgba(0,0,0,.25);
-
-  font-size:12px;
-  font-weight:700;
-  letter-spacing:1.5px;
+    0 12px 35px rgba(0,0,0,.4);
 
   cursor:pointer;
-
-  transition:
-    transform .2s,
-    background .2s;
 }
 
-.nextBtn:active{
-  transform:scale(.94);
-}
-
-.nextArrow{
-  font-size:18px;
-  line-height:0;
-  color:#e8c47d;
+.musicBtn.playing{
+  box-shadow:
+    0 0 25px rgba(202,135,255,.22);
 }
 
 /* =========================================================
    LOCK SCREEN
 ========================================================= */
 
-#lock{
-  z-index:100;
+#lockScreen{
+  position:fixed;
+  inset:0;
+  z-index:500;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:25px;
+
   background:
-    radial-gradient(circle at 50% 25%,rgba(120,70,255,.19),transparent 34%),
-    #05040a;
+    radial-gradient(
+      circle at 50% 25%,
+      rgba(126,69,255,.20),
+      transparent 35%
+    ),
+    #05030b;
+
+  transition:
+    opacity .8s ease,
+    visibility .8s ease,
+    transform .8s cubic-bezier(.22,1,.36,1);
 }
 
-.lockBox{
-  width:min(390px,100%);
-  padding:36px 23px 28px;
+#lockScreen.hidden{
+  opacity:0;
+  visibility:hidden;
+  transform:scale(1.05);
+  pointer-events:none;
+}
 
-  text-align:center;
+.lockCard{
+  width:min(390px,100%);
+
+  padding:34px 22px 27px;
 
   border-radius:32px;
-  border:1px solid rgba(255,255,255,.14);
+
+  text-align:center;
 
   background:
     linear-gradient(
       145deg,
-      rgba(255,255,255,.075),
+      rgba(255,255,255,.085),
       rgba(255,255,255,.025)
     );
 
+  border:1px solid rgba(255,255,255,.14);
+
   box-shadow:
-    0 35px 100px rgba(0,0,0,.55),
-    inset 0 1px 0 rgba(255,255,255,.08);
+    0 35px 100px rgba(0,0,0,.58),
+    inset 0 1px 0 rgba(255,255,255,.09);
 }
 
 .lockIcon{
-  width:76px;
-  height:76px;
+  width:75px;
+  height:75px;
+
   margin:0 auto 18px;
 
   display:flex;
   align-items:center;
   justify-content:center;
 
-  border-radius:25px;
+  border-radius:24px;
 
   background:
     linear-gradient(
@@ -464,53 +267,80 @@ p{
       rgba(255,255,255,.035)
     );
 
-  border:1px solid rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.13);
 
-  font-size:37px;
+  font-size:35px;
 
   box-shadow:
     0 15px 40px rgba(110,60,255,.18);
+}
+
+.kicker{
+  text-transform:uppercase;
+  letter-spacing:4px;
+  font-size:9px;
+  color:#bdb1ce;
+  margin-bottom:15px;
+}
+
+.lockCard h2{
+  font-size:31px;
+  margin-bottom:12px;
+}
+
+.lockCard p{
+  color:#aaa4b2;
+  line-height:1.7;
+  font-size:13px;
 }
 
 .pin{
   display:flex;
   justify-content:center;
   gap:15px;
-  margin:27px 0;
+  margin:25px 0;
 }
 
 .dot{
-  display:block;
   width:11px;
   height:11px;
+
   border-radius:50%;
-  border:1px solid rgba(255,255,255,.42);
+
+  border:1px solid rgba(255,255,255,.45);
+
   transition:.2s;
 }
 
 .dot.on{
   background:#fff;
   border-color:#fff;
-  box-shadow:0 0 16px rgba(255,255,255,.75);
-  transform:scale(1.08);
+
+  box-shadow:
+    0 0 15px rgba(255,255,255,.8);
+
+  transform:scale(1.1);
 }
 
-.pad{
+.keypad{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:9px;
 }
 
-.pad button{
+.keypad button{
   height:55px;
 
-  border:1px solid rgba(255,255,255,.09);
   border-radius:17px;
 
-  background:rgba(255,255,255,.055);
+  border:1px solid rgba(255,255,255,.09);
+
+  background:
+    rgba(255,255,255,.055);
 
   color:#fff;
-  font-size:18px;
+
+  font-size:17px;
 
   cursor:pointer;
 
@@ -519,20 +349,22 @@ p{
     background .15s;
 }
 
-.pad button:active{
-  transform:scale(.92);
-  background:rgba(255,255,255,.13);
+.keypad button:active{
+  transform:scale(.91);
+  background:rgba(255,255,255,.14);
 }
 
 .lockHint{
-  margin-top:18px;
-  font-size:10px;
-  letter-spacing:1px;
-  color:#696571;
+  margin-top:17px;
+
+  font-size:9px;
+  letter-spacing:1.5px;
+
+  color:#696372;
 }
 
 .shake{
-  animation:shake .38s ease;
+  animation:shake .4s ease;
 }
 
 @keyframes shake{
@@ -543,109 +375,379 @@ p{
 }
 
 /* =========================================================
+   MAIN STORY
+========================================================= */
+
+main{
+  width:100%;
+}
+
+.story{
+  min-height:100vh;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:
+    90px 18px
+    105px;
+
+  position:relative;
+}
+
+.container{
+  width:min(850px,100%);
+  margin:auto;
+}
+
+.card{
+  position:relative;
+  overflow:hidden;
+
+  padding:35px 23px;
+
+  border-radius:32px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.075),
+      rgba(255,255,255,.022)
+    );
+
+  border:1px solid rgba(255,255,255,.12);
+
+  box-shadow:
+    0 30px 90px rgba(0,0,0,.43),
+    inset 0 1px 0 rgba(255,255,255,.07);
+}
+
+.card::before{
+  content:"";
+
+  position:absolute;
+
+  top:0;
+  left:12%;
+  right:12%;
+
+  height:1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.4),
+      transparent
+    );
+}
+
+.card::after{
+  content:"";
+
+  position:absolute;
+
+  width:180px;
+  height:180px;
+
+  top:-130px;
+  right:-90px;
+
+  border-radius:50%;
+
+  background:
+    rgba(190,140,255,.09);
+
+  filter:blur(30px);
+
+  pointer-events:none;
+}
+
+/* =========================================================
+   TYPOGRAPHY
+========================================================= */
+
+h1{
+  font-size:clamp(57px,16vw,115px);
+  line-height:.84;
+  letter-spacing:-5px;
+
+  background:
+    linear-gradient(
+      105deg,
+      #fff 5%,
+      #ffd7eb 35%,
+      #c9b5ff 62%,
+      #fff 90%
+    );
+
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+h2{
+  font-size:clamp(31px,8vw,58px);
+  line-height:1;
+
+  letter-spacing:-2px;
+
+  margin-bottom:15px;
+}
+
+p{
+  color:#bcb6c5;
+  line-height:1.75;
+  font-size:14px;
+}
+
+.goldLine{
+  width:75px;
+  height:1px;
+
+  margin:25px auto;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      #e8c47d,
+      transparent
+    );
+}
+
+/* =========================================================
    HERO
 ========================================================= */
 
 .heroBadge{
   display:inline-flex;
+
   align-items:center;
   gap:8px;
+
   padding:8px 13px;
-  margin-bottom:25px;
+
+  margin-bottom:24px;
 
   border-radius:30px;
-  border:1px solid rgba(255,255,255,.1);
+
+  border:1px solid rgba(255,255,255,.10);
 
   background:rgba(255,255,255,.04);
 
-  font-size:9px;
+  font-size:8px;
+
   letter-spacing:2px;
-  color:#bdb2cc;
+
+  color:#bdb3ca;
 }
 
 .heroDot{
   width:5px;
   height:5px;
+
   border-radius:50%;
-  background:#e6bdff;
-  box-shadow:0 0 10px #e6bdff;
+
+  background:#e7c0ff;
+
+  box-shadow:0 0 12px #e7c0ff;
 }
 
-.scrollText{
-  margin-top:28px;
-  color:#77727e;
-  font-size:10px;
-  letter-spacing:2px;
+.date{
+  margin-top:22px;
+
+  font-size:clamp(22px,6vw,44px);
+
+  font-weight:800;
+
+  background:
+    linear-gradient(
+      90deg,
+      #fff,
+      #e7c5ff,
+      #f8bfdc
+    );
+
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+.scrollHint{
+  margin-top:30px;
+
+  font-size:9px;
+
+  letter-spacing:3px;
+
+  color:#77717f;
+
+  animation:
+    softPulse 2s ease-in-out infinite;
+}
+
+@keyframes softPulse{
+  50%{
+    opacity:.45;
+  }
 }
 
 /* =========================================================
-   CAKE
+   CHAPTER LABEL
 ========================================================= */
 
-.cake{
-  position:relative;
-  width:260px;
-  height:235px;
-  margin:24px auto 10px;
+.chapter{
+  margin-bottom:12px;
+
+  color:#bca8d4;
+
+  font-size:9px;
+
+  text-transform:uppercase;
+
+  letter-spacing:4px;
 }
 
-.cakeBase{
+/* =========================================================
+   VIP CAKE
+========================================================= */
+
+.cakeArea{
+  margin-top:25px;
+  text-align:center;
+}
+
+.cakeStage{
+  position:relative;
+
+  width:320px;
+  height:410px;
+
+  margin:auto;
+
+  overflow:hidden;
+}
+
+/* CSS-only controls */
+
+.cakeStage input{
   position:absolute;
+  opacity:0;
+  pointer-events:none;
+}
+
+/* cake */
+
+.cake{
+  position:absolute;
+
+  left:50%;
+  top:42px;
+
+  width:280px;
+  height:265px;
+
+  transform:translateX(-50%);
+
+  transition:
+    transform 1s cubic-bezier(.22,1,.36,1),
+    opacity .7s ease;
+}
+
+/* body */
+
+.cakeBody{
+  position:absolute;
+
   left:25px;
-  bottom:25px;
-  width:210px;
-  height:82px;
+  bottom:28px;
+
+  width:230px;
+  height:105px;
 
   border-radius:
-    0 0 25px 25px;
+    0 0 29px 29px;
 
   background:
     linear-gradient(
       145deg,
-      #ff74b5,
-      #7441d6
+      #ff9dca,
+      #dc55a8 46%,
+      #7042d1
     );
 
   box-shadow:
-    0 25px 45px rgba(0,0,0,.35);
+    inset 0 6px 13px rgba(255,255,255,.14),
+    0 25px 50px rgba(0,0,0,.45);
 }
 
-.cakeBase::before{
+.cakeBody::before{
   content:"";
+
   position:absolute;
+
   left:0;
-  top:16px;
+  top:21px;
+
   width:100%;
   height:2px;
-  background:rgba(255,255,255,.25);
+
+  background:
+    rgba(255,255,255,.25);
 }
+
+.cakeBody::after{
+  content:"";
+
+  position:absolute;
+
+  left:0;
+  bottom:20px;
+
+  width:100%;
+  height:2px;
+
+  background:
+    rgba(255,255,255,.13);
+}
+
+/* top */
 
 .cakeTop{
   position:absolute;
+
   left:25px;
-  bottom:82px;
-  width:210px;
-  height:70px;
+  bottom:102px;
+
+  width:230px;
+  height:80px;
 
   border-radius:50%;
 
   background:
-    linear-gradient(
-      145deg,
-      #ffa5cd,
-      #9b68ec
+    radial-gradient(
+      ellipse at 50% 32%,
+      #ffe3ee 0%,
+      #ffa1ca 38%,
+      #9960e4 100%
     );
 
   box-shadow:
-    inset 0 -8px 18px rgba(80,20,100,.12);
+    inset 0 -9px 16px rgba(65,20,100,.16);
 }
+
+/* cream */
 
 .cream{
   position:absolute;
+
   left:25px;
-  bottom:69px;
-  width:210px;
-  height:28px;
+  bottom:88px;
+
+  width:230px;
+  height:33px;
 
   border-radius:50%;
 
@@ -653,77 +755,378 @@ p{
     linear-gradient(
       90deg,
       #fff,
-      #f9eefa
+      #fff6fb,
+      #ebddff
     );
 
-  box-shadow:0 3px 12px rgba(255,255,255,.2);
+  box-shadow:
+    0 3px 16px rgba(255,255,255,.27);
 }
+
+.cream::before,
+.cream::after{
+  content:"";
+
+  position:absolute;
+
+  bottom:-13px;
+
+  width:15px;
+  height:19px;
+
+  border-radius:
+    0 0 12px 12px;
+
+  background:#fff;
+}
+
+.cream::before{
+  left:48px;
+}
+
+.cream::after{
+  right:50px;
+}
+
+/* name */
 
 .cakeName{
   position:absolute;
-  left:0;
-  right:0;
-  bottom:103px;
 
-  z-index:4;
+  left:25px;
+  right:25px;
 
-  font-size:17px;
-  font-weight:900;
-  letter-spacing:4px;
-  text-shadow:0 2px 7px rgba(0,0,0,.3);
+  bottom:57px;
+
+  z-index:30;
+
+  font-size:21px;
+
+  font-weight:1000;
+
+  letter-spacing:6px;
+
+  color:#fff;
+
+  text-shadow:
+    0 2px 5px rgba(0,0,0,.45),
+    0 0 15px rgba(255,255,255,.5);
 }
+
+/* candles */
 
 .candle{
   position:absolute;
-  left:124px;
-  bottom:145px;
 
-  width:12px;
-  height:47px;
+  bottom:162px;
 
-  border-radius:5px;
+  width:14px;
+  height:55px;
+
+  z-index:50;
+
+  border-radius:7px;
 
   background:
     repeating-linear-gradient(
       135deg,
       #fff 0 7px,
-      #ff77b4 7px 12px
+      #ff69af 7px 14px
     );
 
-  z-index:5;
+  box-shadow:
+    inset 2px 0 4px rgba(255,255,255,.4);
 }
+
+.c1{left:60px}
+.c2{left:100px;bottom:173px}
+.c3{left:133px;bottom:180px}
+.c4{left:166px;bottom:173px}
+.c5{left:206px}
+
+/* flames */
 
 .flame{
   position:absolute;
+
   left:-3px;
-  top:-24px;
+  top:-27px;
 
-  width:18px;
-  height:26px;
+  width:20px;
+  height:29px;
 
-  border-radius:50% 50% 50% 0;
+  border-radius:
+    50% 50% 50% 0;
 
   background:
     linear-gradient(
       145deg,
-      #fff3a8,
-      #ff9b22
+      #fffbd0,
+      #ffd044,
+      #ff7620
     );
 
   transform:rotate(-45deg);
 
+  opacity:0;
+
   box-shadow:
-    0 0 25px #ff9c22,
-    0 0 50px rgba(255,155,34,.3);
+    0 0 14px #ffc02d,
+    0 0 34px rgba(255,140,30,.7);
+
+  animation:
+    flame .65s ease-in-out infinite alternate;
 }
 
-.flame.off{
-  display:none;
+@keyframes flame{
+  from{
+    transform:
+      rotate(-48deg)
+      scale(.9);
+  }
+
+  to{
+    transform:
+      rotate(-40deg)
+      scale(1.1);
+  }
 }
 
-.cakeMsg{
-  font-size:12px;
-  color:#88828f;
+/* shadow */
+
+.cakeShadow{
+  position:absolute;
+
+  left:50%;
+  bottom:75px;
+
+  width:220px;
+  height:24px;
+
+  transform:translateX(-50%);
+
+  border-radius:50%;
+
+  background:rgba(0,0,0,.5);
+
+  filter:blur(12px);
+
+  transition:
+    transform 1s,
+    opacity 1s;
+}
+
+/* =========================================================
+   CAKE BUTTONS
+========================================================= */
+
+.cakeBtn{
+  position:absolute;
+
+  left:50%;
+  bottom:12px;
+
+  width:225px;
+  height:52px;
+
+  transform:translateX(-50%);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:18px;
+
+  border:1px solid rgba(255,255,255,.17);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.14),
+      rgba(255,255,255,.045)
+    );
+
+  box-shadow:
+    0 12px 35px rgba(0,0,0,.35),
+    inset 0 1px 0 rgba(255,255,255,.12);
+
+  backdrop-filter:blur(16px);
+
+  font-size:10px;
+  font-weight:800;
+
+  letter-spacing:2px;
+
+  cursor:pointer;
+
+  transition:
+    opacity .4s,
+    transform .25s;
+}
+
+.cakeBtn:active{
+  transform:
+    translateX(-50%)
+    scale(.94);
+}
+
+/* initial */
+
+.blowBtn,
+.cutBtn,
+.cakeFinal{
+  opacity:0;
+  pointer-events:none;
+}
+
+/* LIGHT */
+
+#light:checked ~ .cake .flame{
+  opacity:1;
+}
+
+#light:checked ~ .lightBtn{
+  opacity:0;
+  pointer-events:none;
+}
+
+#light:checked ~ .blowBtn{
+  opacity:1;
+  pointer-events:auto;
+}
+
+/* BLOW */
+
+#blow:checked ~ .cake .flame{
+  animation:
+    blow .45s ease forwards;
+}
+
+@keyframes blow{
+  30%{
+    transform:
+      translateX(14px)
+      rotate(-25deg)
+      scale(.8);
+  }
+
+  100%{
+    opacity:0;
+
+    transform:
+      translateX(28px)
+      rotate(-5deg)
+      scale(.05);
+  }
+}
+
+#blow:checked ~ .blowBtn{
+  opacity:0;
+  pointer-events:none;
+}
+
+#blow:checked ~ .cutBtn{
+  opacity:1;
+  pointer-events:auto;
+}
+
+/* CUT */
+
+#cut:checked ~ .cake{
+  transform:
+    translateX(-50%)
+    translateY(145px)
+    scale(.90);
+
+  opacity:.12;
+}
+
+#cut:checked ~ .cakeShadow{
+  transform:
+    translateX(-50%)
+    scale(.62);
+
+  opacity:.15;
+}
+
+#cut:checked ~ .cutBtn{
+  opacity:0;
+  pointer-events:none;
+}
+
+#cut:checked ~ .cakeFinal{
+  opacity:1;
+  pointer-events:auto;
+
+  animation:
+    finalCake 1.1s cubic-bezier(.22,1,.36,1)
+    forwards;
+}
+
+@keyframes finalCake{
+  0%{
+    opacity:0;
+    transform:
+      translate(-50%,35px)
+      scale(.8);
+  }
+
+  65%{
+    transform:
+      translate(-50%,-5px)
+      scale(1.05);
+  }
+
+  100%{
+    opacity:1;
+    transform:
+      translate(-50%,0)
+      scale(1);
+  }
+}
+
+.cakeFinal{
+  position:absolute;
+
+  left:50%;
+  top:160px;
+
+  width:300px;
+
+  transform:
+    translate(-50%,30px)
+    scale(.85);
+
+  font-size:20px;
+  font-weight:900;
+
+  letter-spacing:1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #fff,
+      #ffd3eb,
+      #d0bcff,
+      #fff
+    );
+
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+.cakeFinal small{
+  display:block;
+
+  margin-top:13px;
+
+  color:#aaa2b2;
+
+  font-size:9px;
+
+  letter-spacing:2px;
+  font-weight:500;
 }
 
 /* =========================================================
@@ -731,11 +1134,13 @@ p{
 ========================================================= */
 
 .letter{
-  position:relative;
   margin-top:25px;
+
   padding:30px 21px;
 
   border-radius:25px;
+
+  border:1px solid rgba(255,255,255,.11);
 
   background:
     linear-gradient(
@@ -744,56 +1149,48 @@ p{
       rgba(120,80,255,.10)
     );
 
-  border:1px solid rgba(255,255,255,.11);
-
   cursor:pointer;
 
   transition:
-    transform .25s,
-    background .25s;
+    transform .25s;
 }
 
 .letter:active{
-  transform:scale(.985);
+  transform:scale(.98);
 }
 
 .letterIcon{
-  font-size:64px;
+  font-size:61px;
   margin-bottom:13px;
-  filter:drop-shadow(0 12px 22px rgba(200,120,255,.2));
-}
-
-.letterOpenLabel{
-  font-size:11px;
-  letter-spacing:2px;
-  color:#aaa2b1;
 }
 
 .letterText{
   display:none;
-  margin-top:22px;
+
+  margin-top:20px;
 
   text-align:left;
 
   color:#d0cbd5;
+
   line-height:1.85;
+
   font-size:14px;
 }
 
 .letter.open .letterText{
   display:block;
-  animation:letterReveal .6s ease;
+
+  animation:
+    reveal .7s ease;
 }
 
-.letter.open .letterOpenLabel{
-  display:none;
-}
-
-@keyframes letterReveal{
+@keyframes reveal{
   from{
     opacity:0;
-    transform:translateY(14px);
+    transform:translateY(15px);
   }
+
   to{
     opacity:1;
     transform:none;
@@ -806,49 +1203,57 @@ p{
 
 .gallery{
   display:grid;
+
   grid-template-columns:1fr 1fr;
-  gap:13px;
+
+  gap:12px;
+
   margin-top:25px;
 }
 
-.photoCard{
+.photo{
   position:relative;
+
   overflow:hidden;
 
   border-radius:22px;
+
   border:1px solid rgba(255,255,255,.13);
 
-  background:#0b0910;
+  background:#0c0912;
 
-  box-shadow:0 15px 35px rgba(0,0,0,.3);
+  aspect-ratio:1;
 
   cursor:pointer;
+
+  box-shadow:
+    0 15px 35px rgba(0,0,0,.35);
 }
 
-.photoCard:first-child{
+.photo:first-child{
   grid-column:span 2;
   aspect-ratio:16/9;
 }
 
-.photoCard:not(:first-child){
-  aspect-ratio:1;
-}
-
-.gallery img{
+.photo img{
   width:100%;
   height:100%;
+
   display:block;
+
   object-fit:cover;
 
-  transition:transform .4s ease;
+  transition:
+    transform .6s cubic-bezier(.22,1,.36,1);
 }
 
-.photoCard:active img{
-  transform:scale(.97);
+.photo:hover img{
+  transform:scale(1.05);
 }
 
 .photoLabel{
   position:absolute;
+
   left:11px;
   bottom:10px;
 
@@ -858,11 +1263,11 @@ p{
 
   background:rgba(0,0,0,.5);
 
-  backdrop-filter:blur(8px);
+  backdrop-filter:blur(9px);
 
   font-size:8px;
+
   letter-spacing:1.5px;
-  color:#eee;
 }
 
 /* =========================================================
@@ -871,32 +1276,41 @@ p{
 
 .wishes{
   display:grid;
+
   gap:11px;
-  margin-top:23px;
+
+  margin-top:24px;
 }
 
 .wish{
-  position:relative;
-  padding:20px 18px;
+  padding:19px 17px;
+
+  text-align:left;
 
   border-radius:19px;
+
+  border:1px solid rgba(255,255,255,.08);
 
   background:
     linear-gradient(
       135deg,
       rgba(255,255,255,.065),
-      rgba(255,255,255,.025)
+      rgba(255,255,255,.022)
     );
 
-  border:1px solid rgba(255,255,255,.08);
-
-  text-align:left;
+  color:#d0ccd5;
 
   font-size:14px;
-  color:#d0ccd5;
 
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,.035);
+
+  transition:
+    transform .25s;
+}
+
+.wish:hover{
+  transform:translateY(-3px);
 }
 
 .wishIcon{
@@ -907,63 +1321,61 @@ p{
    FINAL GIFT
 ========================================================= */
 
-.finalGift{
-  position:relative;
+.gift{
+  width:140px;
+  height:140px;
 
-  width:135px;
-  height:135px;
+  margin:28px auto;
 
   display:flex;
   align-items:center;
   justify-content:center;
 
-  margin:28px auto;
+  border-radius:36px;
 
-  border-radius:35px;
+  border:1px solid rgba(255,255,255,.13);
 
   background:
     linear-gradient(
       145deg,
-      rgba(255,255,255,.10),
+      rgba(255,255,255,.11),
       rgba(255,255,255,.035)
     );
 
-  border:1px solid rgba(255,255,255,.12);
-
-  font-size:72px;
+  font-size:70px;
 
   cursor:pointer;
 
   box-shadow:
-    0 25px 65px rgba(0,0,0,.4);
+    0 25px 65px rgba(0,0,0,.45);
+
+  animation:
+    giftFloat 2.2s ease-in-out infinite;
 }
 
-.finalGift:active{
-  transform:scale(.93);
+@keyframes giftFloat{
+  50%{
+    transform:translateY(-7px);
+  }
 }
 
-.giftGlow{
-  position:absolute;
-  inset:18px;
-  border-radius:25px;
-  box-shadow:0 0 55px rgba(226,140,255,.15);
-}
-
-.finalGift.opened{
-  animation:giftOpen .6s ease;
+.gift.open{
+  animation:
+    giftOpen .7s ease;
 }
 
 @keyframes giftOpen{
-  50%{
-    transform:scale(1.14) rotate(-3deg);
+  45%{
+    transform:scale(1.16) rotate(-4deg);
   }
+
   100%{
     transform:scale(1);
   }
 }
 
 /* =========================================================
-   FINAL PAGE
+   FINAL
 ========================================================= */
 
 .finalCard{
@@ -973,53 +1385,102 @@ p{
 
 .finalDate{
   margin-bottom:22px;
-  color:#a79eae;
+
+  color:#a9a1b0;
+
   font-size:10px;
+
   letter-spacing:4px;
 }
 
-.finalEmojis{
-  margin-top:28px;
+.finalEmoji{
+  margin-top:27px;
+
   font-size:42px;
-  letter-spacing:8px;
+
+  letter-spacing:7px;
 }
 
 /* =========================================================
-   MUSIC
+   NEXT BUTTON
 ========================================================= */
 
-.music{
+.nextWrap{
   position:fixed;
-  top:max(18px,env(safe-area-inset-top));
-  right:17px;
 
-  width:46px;
-  height:46px;
+  left:50%;
+  bottom:max(15px,env(safe-area-inset-bottom));
 
-  border-radius:50%;
+  transform:translateX(-50%);
 
-  border:1px solid rgba(255,255,255,.13);
+  z-index:120;
 
-  background:rgba(12,10,18,.76);
+  width:min(390px,calc(100% - 34px));
 
-  backdrop-filter:blur(15px);
-  -webkit-backdrop-filter:blur(15px);
+  height:58px;
 
-  color:#fff;
-  font-size:17px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 
-  z-index:75;
+  padding:7px 7px 7px 17px;
+
+  border-radius:22px;
+
+  background:
+    rgba(12,9,19,.84);
+
+  border:1px solid rgba(255,255,255,.12);
+
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
 
   box-shadow:
-    0 10px 30px rgba(0,0,0,.35);
+    0 15px 45px rgba(0,0,0,.45);
+}
+
+.nextInfo{
+  color:#898390;
+
+  font-size:9px;
+
+  letter-spacing:2px;
+}
+
+.nextBtn{
+  min-width:120px;
+  height:44px;
+
+  border-radius:16px;
+
+  border:1px solid rgba(255,255,255,.17);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.14),
+      rgba(255,255,255,.05)
+    );
+
+  color:#fff;
+
+  font-size:10px;
+
+  font-weight:800;
+
+  letter-spacing:2px;
 
   cursor:pointer;
 }
 
-.music.playing{
-  border-color:rgba(226,173,255,.35);
-  box-shadow:
-    0 0 25px rgba(192,125,255,.17);
+.nextBtn:active{
+  transform:scale(.94);
+}
+
+.arrow{
+  margin-left:8px;
+  color:#e9c67e;
+  font-size:17px;
 }
 
 /* =========================================================
@@ -1028,17 +1489,20 @@ p{
 
 .modal{
   position:fixed;
+
   inset:0;
 
-  background:rgba(2,1,5,.96);
-
-  z-index:200;
+  z-index:400;
 
   display:none;
+
   align-items:center;
   justify-content:center;
 
-  padding:25px;
+  padding:22px;
+
+  background:
+    rgba(2,1,6,.96);
 }
 
 .modal.show{
@@ -1047,23 +1511,25 @@ p{
 
 .modal img{
   max-width:96%;
-  max-height:82vh;
+  max-height:84vh;
 
   border-radius:22px;
 
-  border:1px solid rgba(255,255,255,.13);
+  border:1px solid rgba(255,255,255,.14);
 
   box-shadow:
-    0 30px 100px rgba(0,0,0,.7);
+    0 30px 100px rgba(0,0,0,.75);
 
-  animation:photoIn .35s ease;
+  animation:
+    photoIn .35s ease;
 }
 
 @keyframes photoIn{
   from{
     opacity:0;
-    transform:scale(.94);
+    transform:scale(.92);
   }
+
   to{
     opacity:1;
     transform:scale(1);
@@ -1072,8 +1538,9 @@ p{
 
 .close{
   position:absolute;
-  top:max(17px,env(safe-area-inset-top));
-  right:19px;
+
+  top:max(16px,env(safe-area-inset-top));
+  right:17px;
 
   width:45px;
   height:45px;
@@ -1084,52 +1551,62 @@ p{
 
   border-radius:50%;
 
-  background:rgba(255,255,255,.07);
-  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.08);
 
-  color:#fff;
+  border:1px solid rgba(255,255,255,.13);
+
   font-size:27px;
 
   cursor:pointer;
 }
 
 /* =========================================================
-   EFFECTS
+   CONFETTI
 ========================================================= */
 
-#fx{
+#confetti{
   position:fixed;
   inset:0;
-  width:100%;
-  height:100%;
+
+  z-index:300;
+
   pointer-events:none;
-  z-index:180;
+
+  overflow:hidden;
 }
 
 .conf{
   position:absolute;
+
+  top:-20px;
+
   width:7px;
   height:11px;
+
   border-radius:2px;
-  animation:fall 1.8s cubic-bezier(.15,.7,.25,1) forwards;
+
+  animation:
+    fall 2.2s cubic-bezier(.15,.7,.25,1)
+    forwards;
 }
 
 @keyframes fall{
   to{
     transform:
-      translate3d(var(--x),100vh,0)
-      rotate(650deg);
+      translate3d(var(--x),110vh,0)
+      rotate(720deg);
+
     opacity:0;
   }
 }
 
 /* =========================================================
-   DESKTOP
+   RESPONSIVE
 ========================================================= */
 
 @media(min-width:700px){
 
-  .glass{
+  .card{
     padding:48px 45px;
   }
 
@@ -1137,20 +1614,15 @@ p{
     grid-template-columns:repeat(3,1fr);
   }
 
-  .photoCard:first-child{
+  .photo:first-child{
     grid-column:auto;
     aspect-ratio:1;
   }
 
-  .photoCard:not(:first-child){
+  .photo{
     aspect-ratio:1;
   }
-
 }
-
-/* =========================================================
-   REDUCE MOTION
-========================================================= */
 
 @media(prefers-reduced-motion:reduce){
 
@@ -1162,103 +1634,125 @@ p{
     scroll-behavior:auto !important;
     transition-duration:.001ms !important;
   }
-
 }
 </style>
 </head>
 
 <body>
 
-<div id="app">
+<!-- =======================================================
+     BACKGROUND
+======================================================= -->
 
-  <!-- BACKGROUND -->
-  <div class="bg">
-    <div class="orb o1"></div>
-    <div class="orb o2"></div>
-    <div class="orb o3"></div>
-    <div id="stars"></div>
-    <div class="noise"></div>
+<div class="bgGlow">
+  <div class="glow glow1"></div>
+  <div class="glow glow2"></div>
+  <div class="glow glow3"></div>
+</div>
+
+<div class="stars" id="stars"></div>
+
+<div class="topBar">
+  <div class="progressTrack">
+    <div class="progress" id="progress"></div>
   </div>
+</div>
 
-  <!-- PROGRESS -->
-  <div class="progressWrap">
-    <div class="progressTrack">
-      <div class="progress" id="progress"></div>
+
+<!-- =======================================================
+     PASSWORD
+======================================================= -->
+
+<div id="lockScreen">
+
+  <div class="lockCard" id="lockCard">
+
+    <div class="lockIcon">
+      🔐
     </div>
-  </div>
 
-  <!-- EFFECT CANVAS -->
-  <canvas id="fx"></canvas>
+    <div class="kicker">
+      Private Birthday Experience
+    </div>
 
+    <h2>
+      One Little Secret
+    </h2>
 
-  <!-- =====================================================
-       PASSWORD
-  ====================================================== -->
+    <p>
+      Enter the four-digit code<br>
+      to unlock Hamid's birthday.
+    </p>
 
-  <section class="screen active" id="lock">
+    <div class="pin">
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
 
-    <div class="lockBox" id="lockBox">
+    <div class="keypad">
 
-      <div class="lockIcon">🔐</div>
+      <button onclick="pressKey('1')">1</button>
+      <button onclick="pressKey('2')">2</button>
+      <button onclick="pressKey('3')">3</button>
 
-      <div class="kicker">
-        Private Birthday Experience
-      </div>
+      <button onclick="pressKey('4')">4</button>
+      <button onclick="pressKey('5')">5</button>
+      <button onclick="pressKey('6')">6</button>
 
-      <h2>
-        One Little Secret
-      </h2>
+      <button onclick="pressKey('7')">7</button>
+      <button onclick="pressKey('8')">8</button>
+      <button onclick="pressKey('9')">9</button>
 
-      <p>
-        Enter the four-digit code<br>
-        to unlock Hamid's surprise.
-      </p>
-
-      <div class="pin">
-        <i class="dot"></i>
-        <i class="dot"></i>
-        <i class="dot"></i>
-        <i class="dot"></i>
-      </div>
-
-      <div class="pad">
-
-        <button onclick="key('1')">1</button>
-        <button onclick="key('2')">2</button>
-        <button onclick="key('3')">3</button>
-
-        <button onclick="key('4')">4</button>
-        <button onclick="key('5')">5</button>
-        <button onclick="key('6')">6</button>
-
-        <button onclick="key('7')">7</button>
-        <button onclick="key('8')">8</button>
-        <button onclick="key('9')">9</button>
-
-        <button onclick="back()">⌫</button>
-        <button onclick="key('0')">0</button>
-        <button onclick="check()">✓</button>
-
-      </div>
-
-      <div class="lockHint">
-        TODAY'S DATE IS PART OF THE MAGIC
-      </div>
+      <button onclick="deleteKey()">⌫</button>
+      <button onclick="pressKey('0')">0</button>
+      <button onclick="checkPassword()">✓</button>
 
     </div>
 
-  </section>
+    <div class="lockHint">
+      19 • 09 • 2026
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =======================================================
+     MUSIC
+======================================================= -->
+
+<button
+  class="musicBtn"
+  id="musicBtn"
+  onclick="toggleMusic()"
+  aria-label="Music">
+  🎵
+</button>
+
+<audio id="music" loop preload="metadata">
+  <source src="birthday.mp3" type="audio/mpeg">
+</audio>
+
+
+<!-- =======================================================
+     MAIN STORY
+======================================================= -->
+
+<main id="story">
 
 
   <!-- =====================================================
-       PAGE 1 — HERO
+       HERO
   ====================================================== -->
 
-  <section class="screen" data-page="0">
+  <section class="story">
 
-    <div class="inner">
+    <div class="container">
 
-      <div class="glass">
+      <div class="card" style="text-align:center">
 
         <div class="heroBadge">
           <span class="heroDot"></span>
@@ -1275,18 +1769,18 @@ p{
 
         <div class="goldLine"></div>
 
-        <div class="dateBig">
-          Your Day.
+        <div class="date">
+          Your Day. ❤️
         </div>
 
-        <p>
+        <p style="margin-top:18px">
           Today isn't just another date.<br>
           It's a little reminder that your existence<br>
           deserves to be celebrated.
         </p>
 
-        <div class="scrollText">
-          EXPLORE THE SURPRISE ↓
+        <div class="scrollHint">
+          SCROLL TO BEGIN ↓
         </div>
 
       </div>
@@ -1297,49 +1791,116 @@ p{
 
 
   <!-- =====================================================
-       PAGE 2 — CAKE
+       CAKE
   ====================================================== -->
 
-  <section class="screen" data-page="1">
+  <section class="story" id="cakeSection">
 
-    <div class="inner">
+    <div class="container">
 
-      <div class="glass">
+      <div class="card" style="text-align:center">
 
-        <div class="kicker">
+        <div class="chapter">
           Chapter 01
         </div>
 
         <h2>
-          Make A Wish 🎂
+          Your Birthday Cake 🎂
         </h2>
 
         <p>
-          Close your eyes for a moment.<br>
-          Think of something you truly want.
+          First, let's light the candles.<br>
+          Then make your wish.
         </p>
 
-        <div class="cake">
+        <div class="cakeArea">
 
-          <div class="candle">
-            <div class="flame" id="flame"></div>
-          </div>
+          <div class="cakeStage">
 
-          <div class="cakeTop"></div>
+            <!-- CSS ONLY CONTROLS -->
+            <input type="checkbox" id="light">
+            <input type="checkbox" id="blow">
+            <input type="checkbox" id="cut">
 
-          <div class="cream"></div>
+            <!-- CAKE -->
 
-          <div class="cakeBase"></div>
+            <div class="cake">
 
-          <div class="cakeName">
-            HAMID
+              <div class="candle c1">
+                <span class="flame"></span>
+              </div>
+
+              <div class="candle c2">
+                <span class="flame"></span>
+              </div>
+
+              <div class="candle c3">
+                <span class="flame"></span>
+              </div>
+
+              <div class="candle c4">
+                <span class="flame"></span>
+              </div>
+
+              <div class="candle c5">
+                <span class="flame"></span>
+              </div>
+
+              <div class="cakeTop"></div>
+
+              <div class="cream"></div>
+
+              <div class="cakeBody"></div>
+
+              <div class="cakeName">
+                HAMID
+              </div>
+
+            </div>
+
+            <div class="cakeShadow"></div>
+
+
+            <!-- STEP 1 -->
+
+            <label
+              for="light"
+              class="cakeBtn lightBtn">
+              🕯️ LIGHT CANDLES
+            </label>
+
+
+            <!-- STEP 2 -->
+
+            <label
+              for="blow"
+              class="cakeBtn blowBtn">
+              💨 BLOW CANDLES
+            </label>
+
+
+            <!-- STEP 3 -->
+
+            <label
+              for="cut"
+              class="cakeBtn cutBtn">
+              🔪 CUT THE CAKE
+            </label>
+
+
+            <!-- FINAL -->
+
+            <div class="cakeFinal">
+              🎉 HAPPY BIRTHDAY HAMID ❤️
+
+              <small>
+                Make a wish. Make it count. ✨
+              </small>
+            </div>
+
           </div>
 
         </div>
-
-        <p class="cakeMsg" id="cakeMsg">
-          Tap the cake to make your wish.
-        </p>
 
       </div>
 
@@ -1349,16 +1910,16 @@ p{
 
 
   <!-- =====================================================
-       PAGE 3 — LETTER
+       LETTER
   ====================================================== -->
 
-  <section class="screen" data-page="2">
+  <section class="story">
 
-    <div class="inner">
+    <div class="container">
 
-      <div class="glass">
+      <div class="card">
 
-        <div class="kicker">
+        <div class="chapter">
           Chapter 02
         </div>
 
@@ -1373,44 +1934,56 @@ p{
         <div
           class="letter"
           id="letter"
-          onclick="openLetter()"
-        >
+          onclick="openLetter()">
 
-          <div class="letterIcon">
+          <div
+            class="letterIcon">
             💌
           </div>
 
-          <div class="letterOpenLabel">
+          <div
+            id="letterLabel"
+            style="
+              font-size:11px;
+              letter-spacing:2px;
+              color:#aaa2b1;
+              text-align:center;
+            ">
             TAP TO OPEN
           </div>
 
-          <div class="letterText">
+          <div
+            class="letterText"
+            id="letterText">
 
             <p>
-              <strong>Happy Birthday, Hamid ❤️</strong>
+              <strong>
+                Happy Birthday, Hamid ❤️
+              </strong>
             </p>
 
             <br>
 
             <p>
-              May this new year of your life bring you
-              peace, happiness, success and countless
-              moments worth remembering.
+              May this new year of your life bring
+              you peace, happiness, success and
+              countless moments worth remembering.
             </p>
 
             <br>
 
             <p>
-              May the things you quietly wish for find
-              their way to you, and may you always have
-              people around you who genuinely care.
+              May the things you quietly wish for
+              find their way to you, and may you
+              always have people around you who
+              genuinely care.
             </p>
 
             <br>
 
             <p>
-              Keep smiling, keep growing, and keep being
-              yourself.
+              Keep smiling, keep growing, and keep
+              being yourself.
             </p>
 
             <br>
@@ -1433,16 +2006,16 @@ p{
 
 
   <!-- =====================================================
-       PAGE 4 — MEMORIES
+       MEMORIES
   ====================================================== -->
 
-  <section class="screen" data-page="3">
+  <section class="story">
 
-    <div class="inner">
+    <div class="container">
 
-      <div class="glass">
+      <div class="card">
 
-        <div class="kicker">
+        <div class="chapter">
           Chapter 03
         </div>
 
@@ -1455,60 +2028,66 @@ p{
           in the camera roll.
         </p>
 
-        <!--
-          IMAGE GUIDE
-          -----------------------------------------------
-          Keep these files beside index.html:
-
-          PNG 1.png
-          PNG 2.png
-          PNG 3.png
-
-          Do NOT rename them.
-        -->
-
         <div class="gallery">
 
           <div
-            class="photoCard"
-            onclick="photo('PNG 1.png')"
-          >
+            class="photo"
+            onclick="openPhoto('PNG 1.png')">
+
             <img
               src="PNG 1.png"
-              alt="Memory 1"
-            >
+              alt="Hamid Memory 1"
+              loading="lazy">
+
             <div class="photoLabel">
               MEMORY 01
             </div>
+
           </div>
 
+
           <div
-            class="photoCard"
-            onclick="photo('PNG 2.png')"
-          >
+            class="photo"
+            onclick="openPhoto('PNG 2.png')">
+
             <img
               src="PNG 2.png"
-              alt="Memory 2"
-            >
+              alt="Hamid Memory 2"
+              loading="lazy">
+
             <div class="photoLabel">
               MEMORY 02
             </div>
+
           </div>
 
+
           <div
-            class="photoCard"
-            onclick="photo('PNG 3.png')"
-          >
+            class="photo"
+            onclick="openPhoto('PNG 3.png')">
+
             <img
               src="PNG 3.png"
-              alt="Memory 3"
-            >
+              alt="Hamid Memory 3"
+              loading="lazy">
+
             <div class="photoLabel">
               MEMORY 03
             </div>
+
           </div>
 
         </div>
+
+        <p
+          style="
+            text-align:center;
+            margin-top:18px;
+            font-size:10px;
+            color:#77717e;
+          ">
+          TAP ANY PHOTO TO VIEW FULL SCREEN
+        </p>
 
       </div>
 
@@ -1518,16 +2097,16 @@ p{
 
 
   <!-- =====================================================
-       PAGE 5 — WISHES
+       WISHES
   ====================================================== -->
 
-  <section class="screen" data-page="4">
+  <section class="story">
 
-    <div class="inner">
+    <div class="container">
 
-      <div class="glass">
+      <div class="card">
 
-        <div class="kicker">
+        <div class="chapter">
           Chapter 04
         </div>
 
@@ -1571,16 +2150,18 @@ p{
 
 
   <!-- =====================================================
-       PAGE 6 — GIFT
+       GIFT
   ====================================================== -->
 
-  <section class="screen" data-page="5">
+  <section class="story">
 
-    <div class="inner">
+    <div class="container">
 
-      <div class="glass">
+      <div
+        class="card"
+        style="text-align:center">
 
-        <div class="kicker">
+        <div class="chapter">
           Final Chapter
         </div>
 
@@ -1589,22 +2170,17 @@ p{
         </h2>
 
         <p>
-          You've reached the final little secret.
+          You've made it all the way here.
         </p>
 
         <div
-          class="finalGift"
-          id="finalGift"
-          onclick="finale(event)"
-        >
-
-          <div class="giftGlow"></div>
-
+          class="gift"
+          id="gift"
+          onclick="openGift()">
           🎁
-
         </div>
 
-        <p id="finalText">
+        <p id="giftText">
           Tap the gift.
         </p>
 
@@ -1616,24 +2192,28 @@ p{
 
 
   <!-- =====================================================
-       FINAL PAGE
+       FINAL
   ====================================================== -->
 
-  <section class="screen" data-page="6">
+  <section class="story">
 
-    <div class="inner">
+    <div class="container">
 
-      <div class="glass finalCard">
+      <div
+        class="card finalCard"
+        style="text-align:center">
 
         <div class="finalDate">
           19 • 09 • 2026
         </div>
 
-        <div class="kicker">
+        <div class="chapter">
           THIS DAY IS YOURS
         </div>
 
-        <h1 style="font-size:clamp(43px,11vw,90px)">
+        <h1 style="
+          font-size:clamp(43px,11vw,90px);
+        ">
           Happy<br>
           Birthday<br>
           Hamid ❤️
@@ -1646,7 +2226,7 @@ p{
           happier and unforgettable.
         </p>
 
-        <div class="finalEmojis">
+        <div class="finalEmoji">
           🎂 ✨ 🎉
         </div>
 
@@ -1656,160 +2236,101 @@ p{
 
   </section>
 
+</main>
 
-  <!-- =====================================================
-       BOTTOM NAV
-  ====================================================== -->
+
+<!-- =======================================================
+     NEXT NAVIGATION
+======================================================= -->
+
+<div class="nextWrap">
 
   <div
-    class="bottomNav"
-    id="bottomNav"
-    style="display:none"
-  >
-
-    <div
-      class="navInfo"
-      id="navInfo"
-    >
-      01 / 07
-    </div>
-
-    <button
-      class="nextBtn"
-      id="nextBtn"
-      onclick="next()"
-    >
-      NEXT
-      <span class="nextArrow">→</span>
-    </button>
-
+    class="nextInfo"
+    id="nextInfo">
+    SCROLL • 01 / 07
   </div>
-
-
-  <!-- MUSIC -->
 
   <button
-    class="music"
-    id="musicBtn"
-    onclick="toggleMusic()"
-    aria-label="Music"
-  >
-    🎵
+    class="nextBtn"
+    onclick="nextSection()"
+    id="nextBtn">
+    NEXT
+    <span class="arrow">↓</span>
   </button>
-
-
-  <!-- PHOTO VIEWER -->
-
-  <div
-    class="modal"
-    id="modal"
-    onclick="closePhoto()"
-  >
-
-    <div
-      class="close"
-      onclick="closePhoto()"
-    >
-      ×
-    </div>
-
-    <img
-      id="modalImg"
-      alt="Full screen memory"
-    >
-
-  </div>
-
-
-  <!--
-    MUSIC GUIDE:
-    Keep birthday.mp3 beside index.html.
-  -->
-
-  <audio
-    id="music"
-    loop
-    preload="metadata"
-  >
-    <source
-      src="birthday.mp3"
-      type="audio/mpeg"
-    >
-  </audio>
 
 </div>
 
 
-<script>
+<!-- =======================================================
+     PHOTO MODAL
+======================================================= -->
 
+<div
+  class="modal"
+  id="photoModal"
+  onclick="closePhoto(event)">
+
+  <button
+    class="close"
+    onclick="closePhoto(event)">
+    ×
+  </button>
+
+  <img
+    id="modalImage"
+    alt="Full screen memory">
+
+</div>
+
+
+<!-- =======================================================
+     CONFETTI
+======================================================= -->
+
+<div id="confetti"></div>
+
+
+<script>
 /* =========================================================
    SETTINGS
 ========================================================= */
 
 const PASSWORD = "1909";
 
-let input = "";
-let page = -1;
+let pin = "";
 
-let cakeDone = false;
-let letterOpen = false;
-let finaleDone = false;
+const sections = [
+  ...document.querySelectorAll(".story")
+];
+
+let currentSection = 0;
 
 
 /* =========================================================
-   ELEMENTS
+   STARS
 ========================================================= */
 
-const screens = [
-  ...document.querySelectorAll(".screen[data-page]")
-];
-
-const dots = [
-  ...document.querySelectorAll(".dot")
-];
-
-const progress =
-  document.getElementById("progress");
-
-const music =
-  document.getElementById("music");
-
-const musicBtn =
-  document.getElementById("musicBtn");
-
-const bottomNav =
-  document.getElementById("bottomNav");
-
-const navInfo =
-  document.getElementById("navInfo");
-
-const nextBtn =
-  document.getElementById("nextBtn");
-
-
-/* =========================================================
-   STAR FIELD
-   Static stars = much lighter than continuous animation.
-========================================================= */
-
-const starContainer =
+const stars =
   document.getElementById("stars");
 
-for(let i = 0; i < 75; i++){
+for(let i = 0; i < 70; i++){
 
-  const s =
+  const star =
     document.createElement("span");
 
-  s.style.left =
+  star.className = "star";
+
+  star.style.left =
     Math.random() * 100 + "%";
 
-  s.style.top =
+  star.style.top =
     Math.random() * 100 + "%";
 
-  s.style.opacity =
-    (.15 + Math.random() * .45).toFixed(2);
+  star.style.opacity =
+    (.15 + Math.random() * .4).toFixed(2);
 
-  starContainer.appendChild(s);
+  stars.appendChild(star);
 
 }
 
@@ -1818,328 +2339,93 @@ for(let i = 0; i < 75; i++){
    PASSWORD
 ========================================================= */
 
-function updateDots(){
+const dots =
+  document.querySelectorAll(".dot");
+
+function updatePin(){
 
   dots.forEach((dot,index)=>{
 
     dot.classList.toggle(
       "on",
-      index < input.length
+      index < pin.length
     );
 
   });
 
 }
 
+function pressKey(number){
 
-function key(number){
-
-  if(input.length >= 4)
+  if(pin.length >= 4)
     return;
 
-  input += number;
+  pin += number;
 
-  updateDots();
+  updatePin();
 
-  if(input.length === 4){
+  if(pin.length === 4){
 
-    setTimeout(check,150);
+    setTimeout(
+      checkPassword,
+      160
+    );
 
   }
 
 }
 
+function deleteKey(){
 
-function back(){
+  pin =
+    pin.slice(0,-1);
 
-  input =
-    input.slice(0,-1);
-
-  updateDots();
+  updatePin();
 
 }
 
+function checkPassword(){
 
-function check(){
-
-  if(input === PASSWORD){
+  if(pin === PASSWORD){
 
     const lock =
-      document.getElementById("lock");
+      document.getElementById(
+        "lockScreen"
+      );
 
-    lock.style.opacity = "0";
-
-    lock.style.transform =
-      "scale(1.04)";
+    lock.classList.add("hidden");
 
     setTimeout(()=>{
 
-      lock.classList.remove("active");
+      window.scrollTo({
+        top:0,
+        behavior:"instant"
+      });
 
-      page = 0;
+      startMusic();
 
-      showPage();
+    },300);
 
-      autoMusic();
-
-    },350);
-
-  }
-
-  else{
-
-    const box =
-      document.getElementById("lockBox");
-
-    box.classList.add("shake");
-
-    setTimeout(
-      ()=>box.classList.remove("shake"),
-      420
-    );
-
-    input = "";
-
-    updateDots();
-
-  }
-
-}
-
-
-/* =========================================================
-   PAGE CONTROL
-========================================================= */
-
-function showPage(){
-
-  screens.forEach((screen,index)=>{
-
-    screen.classList.remove(
-      "active",
-      "prev"
-    );
-
-    if(index < page){
-
-      screen.classList.add("prev");
-
-    }
-
-    if(index === page){
-
-      screen.classList.add("active");
-
-    }
-
-  });
-
-  const percent =
-    ((page + 1) /
-    screens.length) * 100;
-
-  progress.style.width =
-    percent + "%";
-
-
-  if(page >= 0){
-
-    bottomNav.style.display =
-      "flex";
-
-    navInfo.textContent =
-      String(page + 1).padStart(2,"0")
-      + " / "
-      + String(screens.length).padStart(2,"0");
-
-    if(page === screens.length - 1){
-
-      nextBtn.innerHTML =
-        `RESTART <span class="nextArrow">↻</span>`;
-
-    }
-    else{
-
-      nextBtn.innerHTML =
-        `NEXT <span class="nextArrow">→</span>`;
-
-    }
-
-  }
-
-}
-
-
-function next(){
-
-  if(page < screens.length - 1){
-
-    page++;
-
-    showPage();
-
-  }
-  else{
-
-    restart();
-
-  }
-
-}
-
-
-function prev(){
-
-  if(page > 0){
-
-    page--;
-
-    showPage();
-
-  }
-
-}
-
-
-/* =========================================================
-   CAKE
-========================================================= */
-
-function cakeAction(){
-
-  if(!cakeDone){
-
-    document
-      .getElementById("flame")
-      .classList.add("off");
-
-    document
-      .getElementById("cakeMsg")
-      .textContent =
-      "Wish made. ✨ Press NEXT when you're ready.";
-
-    cakeDone = true;
-
-    confetti(38);
-
-  }
-
-}
-
-
-/* =========================================================
-   LETTER
-========================================================= */
-
-function openLetter(){
-
-  if(!letterOpen){
-
-    document
-      .getElementById("letter")
-      .classList.add("open");
-
-    letterOpen = true;
-
-  }
-
-}
-
-
-/* =========================================================
-   PHOTO VIEWER
-========================================================= */
-
-function photo(src){
-
-  const modal =
-    document.getElementById("modal");
-
-  const image =
-    document.getElementById("modalImg");
-
-  image.src = src;
-
-  modal.classList.add("show");
-
-}
-
-
-function closePhoto(){
-
-  document
-    .getElementById("modal")
-    .classList.remove("show");
-
-}
-
-
-/* =========================================================
-   FINAL GIFT
-========================================================= */
-
-function finale(event){
-
-  event.stopPropagation();
-
-  const gift =
-    document.getElementById("finalGift");
-
-  if(finaleDone)
     return;
+  }
 
-  finaleDone = true;
+  const card =
+    document.getElementById(
+      "lockCard"
+    );
 
-  gift.classList.add("opened");
+  card.classList.add("shake");
 
-  document
-    .getElementById("finalText")
-    .innerHTML =
-    "🎉 Happy Birthday Hamid! ❤️<br>" +
-    "19 September 2026 — a day worth celebrating.";
+  setTimeout(
+    ()=>{
+      card.classList.remove("shake");
+    },
+    420
+  );
 
-  confetti(90);
+  pin = "";
 
-  fireworks();
-
-}
-
-
-/* =========================================================
-   RESTART
-========================================================= */
-
-function restart(){
-
-  page = 0;
-
-  cakeDone = false;
-  letterOpen = false;
-  finaleDone = false;
-
-  document
-    .getElementById("flame")
-    .classList.remove("off");
-
-  document
-    .getElementById("cakeMsg")
-    .textContent =
-    "Tap the cake to make your wish.";
-
-  document
-    .getElementById("letter")
-    .classList.remove("open");
-
-  document
-    .getElementById("finalGift")
-    .classList.remove("opened");
-
-  document
-    .getElementById("finalText")
-    .textContent =
-    "Tap the gift.";
-
-  showPage();
+  updatePin();
 
 }
 
@@ -2148,48 +2434,54 @@ function restart(){
    MUSIC
 ========================================================= */
 
-function autoMusic(){
+const music =
+  document.getElementById("music");
 
-  music.volume = .32;
+const musicBtn =
+  document.getElementById("musicBtn");
 
-  music
-    .play()
+function startMusic(){
+
+  music.volume = .30;
+
+  music.play()
     .then(()=>{
 
       musicBtn.textContent = "🔊";
-      musicBtn.classList.add("playing");
+
+      musicBtn.classList.add(
+        "playing"
+      );
 
     })
     .catch(()=>{
 
-      /*
-        iPhone/Safari can block autoplay.
-        User can press the music button.
-      */
+      /* Browser may block autoplay.
+         User can tap music button. */
 
     });
 
 }
 
-
 function toggleMusic(){
 
   if(music.paused){
 
-    music.volume = .32;
+    music.volume = .30;
 
-    music
-      .play()
+    music.play()
       .then(()=>{
 
         musicBtn.textContent = "🔊";
-        musicBtn.classList.add("playing");
+
+        musicBtn.classList.add(
+          "playing"
+        );
 
       })
       .catch(()=>{});
 
-  }
-  else{
+  }else{
 
     music.pause();
 
@@ -2205,6 +2497,296 @@ function toggleMusic(){
 
 
 /* =========================================================
+   LETTER
+========================================================= */
+
+function openLetter(){
+
+  const letter =
+    document.getElementById(
+      "letter"
+    );
+
+  const text =
+    document.getElementById(
+      "letterText"
+    );
+
+  const label =
+    document.getElementById(
+      "letterLabel"
+    );
+
+  letter.classList.add("open");
+
+  text.style.display = "block";
+
+  label.style.display = "none";
+
+}
+
+
+/* =========================================================
+   GIFT
+========================================================= */
+
+let giftOpened = false;
+
+function openGift(){
+
+  if(giftOpened)
+    return;
+
+  giftOpened = true;
+
+  const gift =
+    document.getElementById(
+      "gift"
+    );
+
+  const text =
+    document.getElementById(
+      "giftText"
+    );
+
+  gift.classList.add("open");
+
+  gift.textContent = "🎉";
+
+  text.innerHTML =
+    "Happy Birthday Hamid! ❤️<br>" +
+    "19 September 2026 — your special day.";
+
+  createConfetti(100);
+
+}
+
+
+/* =========================================================
+   CONFETTI
+========================================================= */
+
+function createConfetti(amount){
+
+  const holder =
+    document.getElementById(
+      "confetti"
+    );
+
+  for(let i=0;i<amount;i++){
+
+    const piece =
+      document.createElement("i");
+
+    piece.className = "conf";
+
+    piece.style.left =
+      "50%";
+
+    piece.style.background =
+      `hsl(${Math.random()*360},85%,70%)`;
+
+    piece.style.setProperty(
+      "--x",
+      (Math.random()*900 - 450) + "px"
+    );
+
+    piece.style.animationDelay =
+      Math.random() * .35 + "s";
+
+    holder.appendChild(piece);
+
+    setTimeout(
+      ()=>piece.remove(),
+      2500
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   PHOTO VIEWER
+========================================================= */
+
+function openPhoto(src){
+
+  const modal =
+    document.getElementById(
+      "photoModal"
+    );
+
+  const image =
+    document.getElementById(
+      "modalImage"
+    );
+
+  image.src = src;
+
+  modal.classList.add("show");
+
+}
+
+function closePhoto(event){
+
+  if(event){
+
+    if(
+      event.target.id ===
+      "modalImage"
+    ){
+      return;
+    }
+
+    event.stopPropagation();
+
+  }
+
+  document
+    .getElementById("photoModal")
+    .classList.remove("show");
+
+}
+
+
+/* =========================================================
+   NEXT BUTTON
+========================================================= */
+
+function nextSection(){
+
+  if(currentSection <
+     sections.length - 1){
+
+    currentSection++;
+
+  }else{
+
+    currentSection = 0;
+
+  }
+
+  sections[currentSection]
+    .scrollIntoView({
+      behavior:"smooth",
+      block:"start"
+    });
+
+}
+
+
+/* =========================================================
+   SCROLL TRACKING
+========================================================= */
+
+const progress =
+  document.getElementById(
+    "progress"
+  );
+
+const nextInfo =
+  document.getElementById(
+    "nextInfo"
+  );
+
+const nextBtn =
+  document.getElementById(
+    "nextBtn"
+  );
+
+
+const observer =
+  new IntersectionObserver(
+    entries=>{
+
+      entries.forEach(entry=>{
+
+        if(entry.isIntersecting){
+
+          const index =
+            sections.indexOf(
+              entry.target
+            );
+
+          if(index >= 0){
+
+            currentSection = index;
+
+            const percent =
+              ((index + 1) /
+              sections.length) * 100;
+
+            progress.style.width =
+              percent + "%";
+
+            nextInfo.textContent =
+              "SCROLL • " +
+              String(index + 1)
+                .padStart(2,"0") +
+              " / " +
+              String(sections.length)
+                .padStart(2,"0");
+
+            if(
+              index ===
+              sections.length - 1
+            ){
+
+              nextBtn.innerHTML =
+                `TOP <span class="arrow">↑</span>`;
+
+            }else{
+
+              nextBtn.innerHTML =
+                `NEXT <span class="arrow">↓</span>`;
+
+            }
+
+          }
+
+        }
+
+      });
+
+    },
+    {
+      threshold:.55
+    }
+  );
+
+
+sections.forEach(
+  section =>
+    observer.observe(section)
+);
+
+
+/* =========================================================
+   FINAL BUTTON = TOP
+========================================================= */
+
+nextBtn.addEventListener(
+  "click",
+  ()=>{
+
+    if(
+      currentSection ===
+      sections.length - 1
+    ){
+
+      window.scrollTo({
+        top:0,
+        behavior:"smooth"
+      });
+
+    }
+
+  }
+);
+
+
+/* =========================================================
    KEYBOARD
 ========================================================= */
 
@@ -2213,42 +2795,44 @@ document.addEventListener(
   event=>{
 
     const lock =
-      document
-        .getElementById("lock")
+      !document
+        .getElementById("lockScreen")
         .classList
-        .contains("active");
+        .contains("hidden");
 
     if(lock){
 
-      if(/^\d$/.test(event.key))
-        key(event.key);
+      if(/^\d$/.test(event.key)){
 
-      if(event.key === "Backspace")
-        back();
+        pressKey(event.key);
 
-      if(event.key === "Enter")
-        check();
-
-    }
-    else{
+      }
 
       if(
-        event.key === "ArrowRight" ||
-        event.key === "Enter" ||
-        event.key === " "
+        event.key === "Backspace"
       ){
 
-        event.preventDefault();
-
-        next();
+        deleteKey();
 
       }
 
-      if(event.key === "ArrowLeft"){
+      if(
+        event.key === "Enter"
+      ){
 
-        prev();
+        checkPassword();
 
       }
+
+      return;
+    }
+
+    if(
+      event.key === "ArrowDown" ||
+      event.key === "Enter"
+    ){
+
+      nextSection();
 
     }
 
@@ -2257,318 +2841,52 @@ document.addEventListener(
 
 
 /* =========================================================
-   SWIPE
+   SWIPE UP = NEXT
 ========================================================= */
 
-let touchX = 0;
-let touchY = 0;
+let startY = 0;
 
 document.addEventListener(
   "touchstart",
   event=>{
 
-    touchX =
-      event.changedTouches[0].screenX;
-
-    touchY =
-      event.changedTouches[0].screenY;
+    startY =
+      event.changedTouches[0]
+      .screenY;
 
   },
   {passive:true}
 );
-
 
 document.addEventListener(
   "touchend",
   event=>{
 
     const lock =
-      document
-        .getElementById("lock")
+      !document
+        .getElementById("lockScreen")
         .classList
-        .contains("active");
+        .contains("hidden");
 
     if(lock)
       return;
 
-    const dx =
-      event.changedTouches[0].screenX -
-      touchX;
+    const endY =
+      event.changedTouches[0]
+      .screenY;
 
-    const dy =
-      event.changedTouches[0].screenY -
-      touchY;
+    const distance =
+      startY - endY;
 
-    if(
-      Math.abs(dx) > 75 &&
-      Math.abs(dx) > Math.abs(dy)
-    ){
+    if(distance > 100){
 
-      if(dx < 0)
-        next();
-      else
-        prev();
+      nextSection();
 
     }
 
   },
   {passive:true}
 );
-
-
-/* =========================================================
-   CONFETTI
-   Only generated when requested.
-========================================================= */
-
-function confetti(amount = 70){
-
-  const app =
-    document.getElementById("app");
-
-  for(let i = 0; i < amount; i++){
-
-    const c =
-      document.createElement("i");
-
-    c.className = "conf";
-
-    c.style.left =
-      "50%";
-
-    c.style.top =
-      "30%";
-
-    c.style.background =
-      `hsl(${Math.random()*360},85%,70%)`;
-
-    c.style.setProperty(
-      "--x",
-      (Math.random()*850 - 425) + "px"
-    );
-
-    c.style.animationDelay =
-      (Math.random()*.25) + "s";
-
-    app.appendChild(c);
-
-    setTimeout(
-      ()=>c.remove(),
-      2200
-    );
-
-  }
-
-}
-
-
-/* =========================================================
-   FIREWORKS
-   Lightweight canvas effect.
-   Runs only after final gift.
-========================================================= */
-
-const canvas =
-  document.getElementById("fx");
-
-const ctx =
-  canvas.getContext("2d");
-
-let particles = [];
-let fireworksRunning = false;
-let fireworksTimer = null;
-
-
-function resizeCanvas(){
-
-  const dpr =
-    Math.min(
-      window.devicePixelRatio || 1,
-      2
-    );
-
-  canvas.width =
-    innerWidth * dpr;
-
-  canvas.height =
-    innerHeight * dpr;
-
-  canvas.style.width =
-    innerWidth + "px";
-
-  canvas.style.height =
-    innerHeight + "px";
-
-  ctx.setTransform(
-    dpr,
-    0,
-    0,
-    dpr,
-    0,
-    0
-  );
-
-}
-
-
-resizeCanvas();
-
-
-window.addEventListener(
-  "resize",
-  resizeCanvas
-);
-
-
-function fireworks(){
-
-  if(fireworksRunning)
-    return;
-
-  fireworksRunning = true;
-
-  for(let k = 0; k < 3; k++){
-
-    setTimeout(()=>{
-
-      const x =
-        innerWidth *
-        (.2 + Math.random()*.6);
-
-      const y =
-        innerHeight *
-        (.18 + Math.random()*.35);
-
-      for(let i = 0; i < 45; i++){
-
-        const angle =
-          Math.random() *
-          Math.PI * 2;
-
-        const speed =
-          1.8 +
-          Math.random() * 3.2;
-
-        particles.push({
-
-          x:x,
-          y:y,
-
-          vx:
-            Math.cos(angle) *
-            speed,
-
-          vy:
-            Math.sin(angle) *
-            speed,
-
-          life:60,
-
-          hue:
-            Math.random()*360
-
-        });
-
-      }
-
-    },k*450);
-
-  }
-
-  if(fireworksTimer)
-    clearTimeout(fireworksTimer);
-
-  fireworksTimer =
-    setTimeout(()=>{
-
-      fireworksRunning = false;
-
-    },2200);
-
-}
-
-
-/* =========================================================
-   ANIMATION LOOP
-   Canvas clears immediately when nothing is happening.
-========================================================= */
-
-function animate(){
-
-  if(
-    particles.length === 0 &&
-    !fireworksRunning
-  ){
-
-    ctx.clearRect(
-      0,
-      0,
-      innerWidth,
-      innerHeight
-    );
-
-    requestAnimationFrame(animate);
-
-    return;
-
-  }
-
-
-  ctx.clearRect(
-    0,
-    0,
-    innerWidth,
-    innerHeight
-  );
-
-
-  particles =
-    particles.filter(
-      particle =>
-        particle.life > 0
-    );
-
-
-  particles.forEach(p=>{
-
-    p.x += p.vx;
-    p.y += p.vy;
-
-    p.vy += .045;
-
-    p.life--;
-
-    ctx.fillStyle =
-      `hsla(
-        ${p.hue},
-        90%,
-        70%,
-        ${p.life/60}
-      )`;
-
-    ctx.fillRect(
-      p.x,
-      p.y,
-      3,
-      3
-    );
-
-  });
-
-
-  requestAnimationFrame(animate);
-
-}
-
-
-animate();
-
-
-/* =========================================================
-   INITIAL STATE
-========================================================= */
-
-showPage();
 
 </script>
 
